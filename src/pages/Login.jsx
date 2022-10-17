@@ -133,7 +133,7 @@ export default function Login() {
                         disabled={isLoading}
                         onClick={() => setSubmitButtonName("auto-login")}
                       >
-                        Log in as Dummy User
+                        Log in as Chris Evans
                       </button>
                       {/* <p>Log in With</p> */}
                       {/* <div className="social-site">

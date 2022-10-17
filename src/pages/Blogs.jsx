@@ -5,7 +5,7 @@ import Pagination from "../components/ui/Pagination";
 import { useGetBlogsQuery } from "../features/blog/blogAPI";
 import Archives from "../sections/Blogs/Archives";
 import BlogItem from "../sections/Blogs/BlogItem";
-import Loading from "../sections/Blogs/Loading";
+import BlogLoading from "../sections/Blogs/BlogLoading";
 import RecentPost from "../sections/Blogs/RecentPost";
 import Tags from "../sections/Blogs/Tags";
 
@@ -41,7 +41,7 @@ const Blogs = () => {
 
   // decide what to render
   let content;
-  if (isLoading) content = <Loading />;
+  if (isLoading) content = <BlogLoading />;
   if (!isLoading && hasError) content = <span>No Blogs Found</span>;
   if (!isLoading && !hasError && blogs?.data?.length === 0)
     content = <span>No Blogs Found</span>;

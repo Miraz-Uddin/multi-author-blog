@@ -2,7 +2,7 @@ import moment from "moment/moment";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useGetBlogsQuery } from "../../features/blog/blogAPI";
-import Loading from "./Loading";
+import BlogLoading from "./BlogLoading";
 
 export default function RecentPost() {
   const {
@@ -13,7 +13,7 @@ export default function RecentPost() {
 
   // decide what to render
   let content;
-  if (isLoading) content = <Loading />;
+  if (isLoading) content = <BlogLoading />;
   if (!isLoading && hasError) content = <span>No Blogs Found</span>;
   if (!isLoading && !hasError && blogs.data?.length === 0)
     content = <span>No Blogs Found</span>;
