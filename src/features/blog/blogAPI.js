@@ -15,10 +15,12 @@ const blogAPI = apiSlice.injectEndpoints({
         }
         return mainUrl + query;
       },
+      providesTags: ["Comment"],
     }),
     getBlog: builder.query({
       query: (blogId) =>
         `/blogs/${blogId}?[fields][0]=title&[fields][1]=long_description&[fields][2]=publishedAt&populate[image][fields][0]=url&populate[author][fields][0]=username&populate[tags][fields][0]=title&populate[comments][fields][0]=message&populate[comments][fields][1]=parentId`,
+      providesTags: ["Comment"],
     }),
   }),
 });
