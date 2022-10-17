@@ -1,0 +1,21 @@
+.button {
+    position: absolute;
+    bottom: -55px;
+    width: 50px;
+    height: 50px;
+    line-height: 37px;
+    text-align: center;
+    background: #ffb32f;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    border-radius: 50%;
+
+}
+
+.left {
+    left: 47%;
+}
+
+.right {
+    left: 52%;
+}

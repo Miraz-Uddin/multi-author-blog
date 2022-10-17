@@ -1,0 +1,39 @@
+.tags {
+    padding: 5px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #e1e1e1;
+}
+
+.tagsSelected {
+    background-color: #ffb32f;
+}
+
+.monthYear {
+    text-decoration: none;
+}
+
+.monthYearSelected a {
+    color: #ffb32f;
+}
+
+.tags:hover {
+    background-color: #ffb32f;
+    color: #fff;
+    transition: all linear .3s;
+}
+
+.blogImage {
+    /* max-height: 450px;
+    width: auto; */
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+}
+
+.commentHead {
+    justify-content: space-between;
+    display: flex;
+}
