@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import About from "../sections/About/About";
 import Blog from "../sections/Blogs/Blog";
 import Contact from "../sections/Contact";
-import Experience from "../sections/Experience";
+import Counter from "../sections/Counter/Counter";
 import MainBanner from "../sections/MainBanner";
 // import Section from "../sections/Portfolio/Section";
 import Service from "../sections/Service";
@@ -18,7 +18,7 @@ export default function Home() {
       <MainBanner />
       <About />
       <Skill />
-      <Experience />
+      <Counter />
       <Service />
       {/* <Section /> */}
       <Testimonials />
