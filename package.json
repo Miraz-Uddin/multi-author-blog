@@ -30,6 +30,7 @@
     "react-slick": "^0.29.0",
     "react-typed": "^1.2.0",
     "slick-carousel": "^1.8.1",
+    "venobox": "^2.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
