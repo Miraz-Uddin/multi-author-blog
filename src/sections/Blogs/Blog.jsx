@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGetBlogsQuery } from "../../features/blog/blogAPI";
 import Author from "./Author";
+import BlogHead from "./BlogHead";
 import BlogLoading from "./BlogLoading";
 import CommonBlogMessages from "./CommonBlogMessages";
 
@@ -129,19 +130,7 @@ export default function Blog() {
     <section id="blog" className="py_80 bg_secondery full_row" name="blog">
       <div className="container">
         <div className="row">
-          <div className="col-md-12 col-lg-12">
-            <div className="section_title_1 text-center mx-auto pb_60 wow animated slideInUp">
-              <h2 className="title text-uppercase">
-                <span className="line_double mx-auto color_default">blog</span>
-                What’s News
-              </h2>
-              <span className="sub_title">
-                Interdum a etiam sagittis vehicula porta. Massa felis eros quam
-                blandit nulla dolor habitant. Ullamcorper quis ornare et proin
-                pellentesque.
-              </span>
-            </div>
-          </div>
+          <BlogHead />
           <div className="col-md-12 col-lg-12">
             <div className="blog_grid_1 wow animated slideInUp">
               <div className="row">{content}</div>

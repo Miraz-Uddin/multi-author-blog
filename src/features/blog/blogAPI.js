@@ -1,6 +1,9 @@
 import { apiSlice } from "../api/apiSlice";
 const blogAPI = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    getBlogHead: builder.query({
+      query: () => `/p-blog-head`,
+    }),
     getBlogs: builder.query({
       query: ({ tags, monthYear }) => {
         const mainUrl =
@@ -25,4 +28,5 @@ const blogAPI = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetBlogsQuery, useGetBlogQuery } = blogAPI;
+export const { useGetBlogsQuery, useGetBlogQuery, useGetBlogHeadQuery } =
+  blogAPI;
