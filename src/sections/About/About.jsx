@@ -18,7 +18,7 @@ export default function About() {
   if (isLoading)
     content = <AboutLoading message="About Information Loading ..." />;
   if (!isLoading && hasError)
-    content = <li>Error while fetching About Information</li>;
+    content = <AboutLoading message="Error while fetching About Information" />;
   if (!isLoading && !hasError) {
     const {
       section,
