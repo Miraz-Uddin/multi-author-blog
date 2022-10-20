@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import About from "../sections/About/About";
 import Blog from "../sections/Blogs/Blog";
-import Contact from "../sections/Contact";
 import Counter from "../sections/Counter/Counter";
+import Footer from "../sections/Footer/Footer";
 import MainBanner from "../sections/MainBanner";
 // import Section from "../sections/Portfolio/Section";
 import ServiceList from "../sections/Service/ServiceList";
@@ -23,7 +23,7 @@ export default function Home() {
       {/* <Section /> */}
       <Testimonials />
       <Blog />
-      <Contact />
+      <Footer />
     </>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoggedOut } from "../features/auth/authSlice";
 
-export default function Footer() {
+export default function Copyright() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth) || {};
   const handleLogOut = () => {

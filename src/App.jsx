@@ -17,7 +17,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import SingleBlog from "./pages/SingleBlog";
-import Footer from "./sections/Footer";
+import Copyright from "./sections/Copyright";
 import MainNav from "./sections/MainNav";
 
 function App() {
@@ -73,7 +73,7 @@ function App() {
               <Route path="/courses" element={<Navigate to="/coming-soon" />} />
               <Route path="*" element={<Navigate to="/not-found" />} />
             </Routes>
-            <Footer />
+            <Copyright />
           </div>
         </div>
         <span className="scrollToTop" onClick={() => scroll.scrollToTop()}>
