@@ -1,8 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoggedOut } from "../features/auth/authSlice";
+import { useGetCopyrightInfoQuery } from "../features/copyright/copyrightAPI";
 
 export default function Copyright() {
+  const { data, isLoading, hasError } = useGetCopyrightInfoQuery();
+  let content;
+  if (isLoading) content = "... ...";
+  if (!isLoading && hasError) content = "Error ..";
+  if (!isLoading && !hasError) {
+    const { copyright_limit_year, copyright_owner } = data?.data?.attributes;
+    content = copyright_limit_year + " " + copyright_owner;
+  }
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth) || {};
   const handleLogOut = () => {
@@ -10,9 +19,9 @@ export default function Copyright() {
     localStorage.clear();
   };
 
-  let content = <span> All rights reserved.</span>;
+  let contentReserve = <span> All rights reserved.</span>;
   if (user) {
-    content = (
+    contentReserve = (
       <span style={{ cursor: "pointer" }} onClick={handleLogOut}>
         Click to Logout
       </span>
@@ -25,7 +34,9 @@ export default function Copyright() {
           <div className="col-md-12 col-lg-12">
             <div className="copyright">
               <p>
-                <span>Copyright &copy; 2022 Miraz Uddin.{content}</span>
+                <span>
+                  Copyright &copy; {content}.{contentReserve}
+                </span>
               </p>
             </div>
           </div>
