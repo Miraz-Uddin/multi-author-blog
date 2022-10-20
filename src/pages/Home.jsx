@@ -4,7 +4,7 @@ import Blog from "../sections/Blogs/Blog";
 import Counter from "../sections/Counter/Counter";
 import Footer from "../sections/Footer/Footer";
 import MainBanner from "../sections/MainBanner";
-// import Section from "../sections/Portfolio/Section";
+import Section from "../sections/Portfolio/Section";
 import ServiceList from "../sections/Service/ServiceList";
 import Skill from "../sections/Skill/Skill";
 import Testimonials from "../sections/Testimonial/Testimonials";
@@ -20,7 +20,7 @@ export default function Home() {
       <Skill />
       <Counter />
       <ServiceList />
-      {/* <Section /> */}
+      <Section />
       <Testimonials />
       <Blog />
       <Footer />
