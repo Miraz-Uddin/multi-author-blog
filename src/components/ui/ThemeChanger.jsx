@@ -1,91 +1,149 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
 import { themeChange } from "../../features/theme/themeSlice";
+import changeColor from "../../utils/changeColor";
 
 export default function ThemeChanger() {
-  const { bgWhite, bgSecondary, textColor, colorPrimary } =
-    useSelector((state) => state.theme) || {};
+  const {
+    bgWhite,
+    bgAdmin,
+    pureWhite,
+    bgSecondary,
+    textColor,
+    colorPrimary,
+    colorSecondery,
+    boxShadow,
+  } = useSelector((state) => state.theme) || {};
   const dispatch = useDispatch();
   const [mode, setMode] = useState("dark");
   const changeMode = () => {
     let whiteColor;
+    let adminColor;
+    let whitePure;
     let secondaryColor;
     let textPrimaryColor;
     let primaryColor;
+    let seconderyColor;
+    let shadowBox;
     if (mode === "dark") {
       whiteColor = "#1e283c";
-      secondaryColor = "#1e283c";
-      textPrimaryColor = "#fff";
-      primaryColor = "#fff";
+      adminColor = "rgb(28 37 54)";
+      secondaryColor = "rgb(28 37 54)";
+      textPrimaryColor = primaryColor = seconderyColor = whitePure = "#fff";
+      shadowBox = "1px 2px 8px rgb(255 255 255 / 18%)";
       setMode("normal");
     } else {
-      whiteColor = "#fff";
+      whiteColor = whitePure = "#fff";
+      adminColor = "#1e283c";
       secondaryColor = "#f7f7f7";
       textPrimaryColor = "#212529";
       primaryColor = "#1e283c";
+      seconderyColor = "#818181";
+      shadowBox = "1px 2px 10px rgb(0 0 0 / 18%)";
       setMode("dark");
     }
     dispatch(
       themeChange({
         bgWhite: whiteColor,
+        bgAdmin: adminColor,
+        pureWhite: whitePure,
         bgSecondary: secondaryColor,
         textColor: textPrimaryColor,
         colorPrimary: primaryColor,
+        colorSecondery: seconderyColor,
+        boxShadow: shadowBox,
       })
     );
   };
 
+  const handleScroll = (evt) => {
+    const scrolledValue = window.scrollY;
+    if (scrolledValue >= 600) {
+      document.querySelector(".scrollToTop").classList.add("visible");
+    } else {
+      document.querySelector(".scrollToTop").classList.remove("visible");
+    }
+  };
+
   useEffect(() => {
-    let link1 = document.querySelectorAll(".bg_secondery");
-    const links1 = Array.prototype.slice.call(link1);
-    links1.map((el) => (el.style.backgroundColor = bgSecondary));
-    let link2 = document.querySelectorAll(".bg_white");
-    const links2 = Array.prototype.slice.call(link2);
-    links2.map((el) => (el.style.backgroundColor = bgWhite));
-    let link3 = document.querySelectorAll("p");
-    const links3 = Array.prototype.slice.call(link3);
-    links3.map((el) => (el.style.color = textColor));
-    let link4 = document.querySelectorAll("h2");
-    const links4 = Array.prototype.slice.call(link4);
-    links4.map((el) => (el.style.color = textColor));
-    let link5 = document.querySelectorAll("span");
-    const links5 = Array.prototype.slice.call(link5);
-    links5.map((el) => (el.style.color = textColor));
-    let link6 = document.querySelectorAll("label");
-    const links6 = Array.prototype.slice.call(link6);
-    links6.map((el) => (el.style.color = textColor));
-    let link7 = document.querySelectorAll(".service_two");
-    const links7 = Array.prototype.slice.call(link7);
-    links7.map((el) => (el.style.boxShadow = `1px 2px 8px ${textColor}`));
-    let link8 = document.querySelectorAll("h6");
-    const links8 = Array.prototype.slice.call(link8);
-    links8.map((el) => (el.style.color = colorPrimary));
-    let link9 = document.querySelectorAll("h5");
-    const links9 = Array.prototype.slice.call(link9);
-    links9.map((el) => (el.style.color = colorPrimary));
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.addEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    changeColor(".bg_secondery", bgSecondary, "backgroundColor");
+    changeColor(".bg_white", bgWhite, "backgroundColor");
+    changeColor(".admin", bgAdmin, "backgroundColor");
+    changeColor(".admin span.color_primary", pureWhite);
+    changeColor(".service_two", boxShadow, "boxShadow");
+    changeColor(".blog_item", boxShadow, "boxShadow");
+    changeColor(".member_feedback", boxShadow, "boxShadow");
+    changeColor(".blog_item", boxShadow, "boxShadow");
+    changeColor(".service_two > p", textColor);
+    changeColor("h2.title", textColor);
+    changeColor("h2.color_primary", textColor);
+    changeColor(".service_two > h3", textColor);
+    changeColor("span.sub_title", textColor);
+    changeColor(".prgs-bar span", textColor);
+    changeColor(".prgs-bar .skill-percent", textColor);
+    changeColor("li.filter", textColor);
+    changeColor(".blog_content > p", textColor);
+    changeColor("li.filter>a", textColor);
+    changeColor("h5", colorPrimary);
+    changeColor("h6", colorPrimary);
+    changeColor(".date", colorPrimary);
+    changeColor(".comments > span", colorPrimary);
+    changeColor(".color_secondery", colorSecondery);
+    changeColor(".socal_media_2 i.fa", textColor);
+    changeColor(".share_post > h4", textColor);
+    changeColor(".comment_area > h4", textColor);
+    changeColor(".replay > h4", textColor);
+    changeColor(".author_text > p", textColor);
+    changeColor(".author_text span", textColor);
+    changeColor(".copyright span", textColor);
+    changeColor(".widget_title", textColor);
+    changeColor("blockquote", colorSecondery);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 
   return (
-    <div className="color-panel">
-      <div
-        className="on-panel"
+    <>
+      <div className="color-panel">
+        <div
+          className="on-panel"
+          style={{
+            color: `${mode === "normal" ? "#1e283c" : "#fff"}`,
+            backgroundColor: `${mode === "normal" ? "#fff" : "#1e283c"}`,
+          }}
+        >
+          <div className="text-center icon-spinner" onClick={changeMode}>
+            <i
+              className={`fa ${
+                mode === "normal" ? "fa-sun-o" : "fa-moon-o"
+              } fa-3x fa-fw`}
+            ></i>
+          </div>
+        </div>
+        <div className="panel-box">
+          <span className="panel-title"></span>
+        </div>
+      </div>
+      <span
+        className="scrollToTop"
+        onClick={() => scroll.scrollToTop()}
         style={{
           color: `${mode === "normal" ? "#1e283c" : "#fff"}`,
           backgroundColor: `${mode === "normal" ? "#fff" : "#1e283c"}`,
         }}
       >
-        <div className="text-center icon-spinner" onClick={changeMode}>
-          <i
-            className={`fa ${
-              mode === "normal" ? "fa-sun-o" : "fa-moon-o"
-            } fa-3x fa-fw`}
-          ></i>
-        </div>
-      </div>
-      <div className="panel-box">
-        <span className="panel-title"></span>
-      </div>
-    </div>
+        <i
+          className="fa fa-arrow-up"
+          style={{ color: `${mode === "normal" ? "#1e283c" : "#fff"}` }}
+        ></i>
+      </span>
+    </>
   );
 }

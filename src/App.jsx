@@ -5,7 +5,6 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { animateScroll as scroll } from "react-scroll";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "../node_modules/slick-carousel/slick/slick.css";
 import PublicRoute from "./components/PublicRoute";
@@ -36,22 +35,6 @@ function App() {
     headTitle = data?.data?.attributes?.head_title;
   }
 
-  const handleScroll = (evt) => {
-    const scrolledValue = window.scrollY;
-    if (scrolledValue >= 600) {
-      document.querySelector(".scrollToTop").classList.add("visible");
-    } else {
-      document.querySelector(".scrollToTop").classList.remove("visible");
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.addEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   useEffect(() => {
     let link = document.querySelector("link[rel~='icon']");
     if (!link) {
@@ -76,7 +59,7 @@ function App() {
     <>
       <Router>
         <ThemeChanger />
-        <div id="page_wrapper">
+        <div id="page_wrapper" name="home">
           <div className="row">
             <MainNavigation />
             <Routes>
@@ -108,9 +91,6 @@ function App() {
             <Copyright />
           </div>
         </div>
-        <span className="scrollToTop" onClick={() => scroll.scrollToTop()}>
-          <i className="fa fa-arrow-up"></i>
-        </span>
       </Router>
     </>
   );

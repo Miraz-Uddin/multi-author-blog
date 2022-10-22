@@ -10,7 +10,6 @@ export default function Client({ client }) {
       : imageURL.split("/")[0] === "uploads"
       ? process.env.REACT_APP_API_URL + imageURL
       : imageURL;
-  console.log();
   const rating = Math.ceil(client_rating);
   return (
     <div className="member_feedback p_30 color_secondery">

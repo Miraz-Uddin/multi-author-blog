@@ -9,7 +9,7 @@ export default function Archives({ monthYearClicked, selectedMonthYear }) {
       <li
         key={i}
         onClick={() => monthYearClicked(el.formattedData, el.value)}
-        className={`${
+        className={`filter ${
           selectedMonthYear === el.value ? styles.monthYearSelected : ""
         }`}
       >
@@ -18,7 +18,7 @@ export default function Archives({ monthYearClicked, selectedMonthYear }) {
     );
   });
   return (
-    <div className="widget mb_60 d-inline-block p_30 bg_white primary_link full_row wow animated slideInUp">
+    <div className="widget mb_60 d-inline-block p_30 bg_white  full_row wow animated slideInUp">
       <h3 className="widget_title mb_30 text-capitalize d-flex justify-content-between">
         <span>Archives</span>
         <button

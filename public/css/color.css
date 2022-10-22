@@ -152,7 +152,7 @@ ul#menu li a:hover,
 .white_link a:hover,
 .recent_post a:hover,
 .archives ul li a:hover {
-	color: #ffb32f;
+	color: #ffb32f !important;
 }
 
 /*	Primary Color Class & ID

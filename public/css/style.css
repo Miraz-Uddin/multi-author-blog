@@ -1019,6 +1019,7 @@ ul#menu li a {
 ====================================================================================*/
 .service_two p {
   padding: 30px 20px;
+  min-height: 172px;
 }
 
 .srv_item_number {
@@ -1286,6 +1287,10 @@ ul#menu li a {
 
 .member_feedback h5 {
   letter-spacing: 2px;
+}
+
+.member_feedback p {
+  min-height: 112px;
 }
 
 .client_img img {
@@ -1750,6 +1755,7 @@ nav ul li.page-item {
 .category_sidebar ul li a,
 .archives ul li a {
   float: left;
+  color: rgb(44, 44, 44);
 }
 
 .recent_post .post_img {
