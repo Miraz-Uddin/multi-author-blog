@@ -1,13 +1,18 @@
+import { useSnackbar } from "notistack";
 import React from "react";
 
 export default function ContactForm() {
+  const { enqueueSnackbar } = useSnackbar();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    enqueueSnackbar("This Feature is Under Construction", { variant: "info" });
+  };
   return (
     <div className="col-md-8 col-lg-8">
       <form
         className="form contact_message wow animated fadeInRight"
         id="contact-form"
-        action="#"
-        method="post"
+        onSubmit={handleSubmit}
       >
         <div className="row">
           <div className="col-md-6 col-lg-6">

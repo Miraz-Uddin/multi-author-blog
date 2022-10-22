@@ -9,6 +9,8 @@ import { animateScroll as scroll } from "react-scroll";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "../node_modules/slick-carousel/slick/slick.css";
 import PublicRoute from "./components/PublicRoute";
+import ThemeChanger from "./components/ui/ThemeChanger";
+import { useGetHeaderInfoQuery } from "./features/head/headAPI";
 import useAuthCheck from "./hooks/useAuthCheck";
 import Blogs from "./pages/Blogs";
 import Construction from "./pages/Construction";
@@ -18,10 +20,21 @@ import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 import SingleBlog from "./pages/SingleBlog";
 import Copyright from "./sections/Copyright";
-import MainNav from "./sections/MainNav";
+import MainNavigation from "./sections/MainNavigation/MainNavigation";
 
 function App() {
   const authChecked = useAuthCheck();
+  let faviconURL;
+  let headTitle;
+  const { data, isLoading, hasError } = useGetHeaderInfoQuery();
+  if (isLoading || (!isLoading && hasError)) {
+    faviconURL = "./images/favicon.ico";
+    headTitle = "Portfolio";
+  }
+  if (!isLoading && !hasError) {
+    faviconURL = data?.data?.attributes?.head_favicon?.data?.attributes?.url;
+    headTitle = data?.data?.attributes?.head_title;
+  }
 
   const handleScroll = (evt) => {
     const scrolledValue = window.scrollY;
@@ -37,16 +50,35 @@ function App() {
     return () => {
       window.addEventListener("scroll", handleScroll);
     };
-  });
+  }, []);
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+    link.href = faviconURL;
+  }, [faviconURL]);
+  useEffect(() => {
+    let link = document.querySelector("title");
+    if (!link) {
+      link = document.createElement("title");
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+    link.innerHTML = headTitle;
+  }, [headTitle]);
 
   return !authChecked ? (
-    <div>Checking Authentication....</div>
+    <></>
   ) : (
     <>
       <Router>
+        <ThemeChanger />
         <div id="page_wrapper">
           <div className="row">
-            <MainNav />
+            <MainNavigation />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/coming-soon" element={<Construction />} />
@@ -77,7 +109,7 @@ function App() {
           </div>
         </div>
         <span className="scrollToTop" onClick={() => scroll.scrollToTop()}>
-          <i className="fa fa-chevron-up"></i>
+          <i className="fa fa-arrow-up"></i>
         </span>
       </Router>
     </>

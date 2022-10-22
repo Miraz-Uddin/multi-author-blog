@@ -1,8 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Link as ReactScroll } from "react-scroll";
+import { useGetHeaderInfoQuery } from "../../features/head/headAPI";
 
-export default function MainNav() {
+export default function MainNavigation() {
+  let content;
+  const { data, isLoading, hasError } = useGetHeaderInfoQuery();
+  if (isLoading || (!isLoading && hasError))
+    content = (
+      <img
+        className="nav-logo"
+        src={window.origin + "/images/logo/1.png"}
+        alt="logo"
+      />
+    );
+  if (!isLoading && !hasError) {
+    const { logo_white_bg } = data?.data?.attributes;
+    const logoWhiteURL = logo_white_bg?.data?.attributes?.url;
+    const logoWhiteImage =
+      logoWhiteURL === undefined
+        ? window.origin + "/images/logo/1.png"
+        : logoWhiteURL.split("/")[0] === "uploads"
+        ? process.env.REACT_APP_API_URL + logoWhiteURL
+        : logoWhiteURL;
+    // const { logo_transparent_bg } = data?.data?.attributes;
+    // const logoTransparentURL = logo_transparent_bg?.data?.attributes?.url;
+    // const logoTransparentImage =
+    //   logoTransparentURL === undefined
+    //     ? window.origin + "/images/logo/1.png"
+    //     : logoWhiteURL.split("/")[0] === "uploads"
+    //     ? process.env.REACT_APP_API_URL + logoTransparentURL
+    //     : logoTransparentURL;
+    content = <img className="nav-logo" src={logoWhiteImage} alt="logo" />;
+  }
   return (
     <header className="main_nav">
       <div className="container">
@@ -11,11 +41,7 @@ export default function MainNav() {
           className="navbar navbar-expand-lg navbar-light w-100"
         >
           <Link to={`/`} className="navbar-brand">
-            <img
-              className="nav-logo"
-              src={window.origin + "/images/logo/1.png"}
-              alt="logo"
-            />
+            {content}
           </Link>
           <button
             className="navbar-toggler"
@@ -49,7 +75,7 @@ export default function MainNav() {
                   to="about"
                   spy={true}
                   smooth={true}
-                  offset={-72}
+                  offset={0}
                   duration={500}
                   className="nav-link"
                 >
@@ -62,7 +88,7 @@ export default function MainNav() {
                   to="skill"
                   spy={true}
                   smooth={true}
-                  offset={-72}
+                  offset={-88}
                   duration={500}
                   className="nav-link"
                 >
