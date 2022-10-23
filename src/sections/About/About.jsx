@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Venobox from "venobox";
-import AboutLoading from "./AboutLoading";
 
 import { useGetAboutQuery } from "../../features/about/aboutAPI";
+import LoadingOrError from "./LoadingOrError";
 
 export default function About() {
   const { data: about, isLoading, isError } = useGetAboutQuery();
@@ -16,9 +16,14 @@ export default function About() {
   // decide what to render
   let content;
   if (isLoading)
-    content = <AboutLoading message="About Information Loading ..." />;
+    content = <LoadingOrError message="About Information Loading ..." />;
   if (!isLoading && isError)
-    content = <AboutLoading message="Error while fetching About Information" />;
+    content = (
+      <LoadingOrError
+        isError={true}
+        message="Error while fetching About Information"
+      />
+    );
   if (!isLoading && !isError) {
     const {
       section,
