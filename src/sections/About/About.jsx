@@ -21,7 +21,7 @@ export default function About() {
     content = (
       <LoadingOrError
         isError={true}
-        message="Error while fetching About Information"
+        message="Network Error while fetching About Information"
       />
     );
   if (!isLoading && !isError) {

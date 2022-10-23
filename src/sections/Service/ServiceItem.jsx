@@ -1,6 +1,5 @@
 import React from "react";
 import * as FontAwesomeIcon from "react-icons/fa";
-
 import styles from "./serviceCustom.module.css";
 
 export default function ServiceItem({ item }) {

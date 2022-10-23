@@ -1,16 +1,20 @@
 import React from "react";
 import CountUp from "react-countup";
 import { useGetCounterQuery } from "../../features/counter/counterAPI";
-import CounterLoading from "./CounterLoading";
+import LoadingOrError from "./LoadingOrError";
 
 export default function Counter() {
-  const { data: counter, isLoading, isError } = useGetCounterQuery();
-  // decide what to render
   let content;
+  const { data: counter, isLoading, isError } = useGetCounterQuery();
   if (isLoading)
-    content = <CounterLoading message="Counter Data Loading ..." />;
+    content = <LoadingOrError message="Counter Data Loading ..." />;
   if (!isLoading && isError)
-    content = <CounterLoading message="Error while fetching Counter Data" />;
+    content = (
+      <LoadingOrError
+        isError={true}
+        message="Error while fetching Counter Data"
+      />
+    );
   if (!isLoading && !isError) {
     const { years_of_experience, projects_done, happy_clients } =
       counter?.data?.attributes;

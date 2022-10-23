@@ -1,15 +1,20 @@
 import React from "react";
 import { useGetSkillQuery } from "../../features/skill/skillAPI";
 import LinearProgressWithLabel from "./LinearProgressWithLabel";
-import SkillLoading from "./SkillLoading";
+import LoadingOrError from "./LoadingOrError";
 
 export default function Skill() {
-  const { data: skill, isLoading, isError } = useGetSkillQuery();
   let content;
+  const { data: skill, isLoading, isError } = useGetSkillQuery();
   if (isLoading)
-    content = <SkillLoading message="Skill Information Loading ..." />;
+    content = <LoadingOrError message="Skill Information Loading ..." />;
   if (!isLoading && isError)
-    content = <SkillLoading message="Error while fetching About Information" />;
+    content = content = (
+      <LoadingOrError
+        isError={true}
+        message="Network Error while fetching Skills Information"
+      />
+    );
   if (!isLoading && !isError) {
     const {
       section,

@@ -4,7 +4,8 @@ import Typed from "react-typed";
 
 export default function LoadingOrError({ message, isError }) {
   const { enqueueSnackbar } = useSnackbar();
-  enqueueSnackbar(message, { variant: isError ? "error" : "info" });
+  if (isError)
+    enqueueSnackbar(message, { variant: isError ? "error" : "info" });
   return (
     <section
       id="main_banner"
@@ -47,7 +48,7 @@ export default function LoadingOrError({ message, isError }) {
                 style={{ cursor: "pointer" }}
                 disabled
               >
-                Download CV
+                Download Nothing
               </span>
             </div>
           </div>

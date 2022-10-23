@@ -1,14 +1,18 @@
 import React from "react";
 import { useGetBlogHeadQuery } from "../../features/blog/blogAPI";
+import LoadingOrErrorHead from "./LoadingOrErrorHead";
 
 export default function BlogHead() {
   const { data, isLoading, isError } = useGetBlogHeadQuery();
   let content;
   if (isLoading)
-    content = <h2 className="title text-uppercase">Blog Head Loading ...</h2>;
+    content = <LoadingOrErrorHead message="Blog Headline Loading ..." />;
   if (!isLoading && isError)
     content = (
-      <h2 className="title text-uppercase">Error while fetching Blog Head</h2>
+      <LoadingOrErrorHead
+        isError={true}
+        message="Newtowk Error while fetching Blog Headline"
+      />
     );
   if (!isLoading && !isError) {
     const { section, title, subtitle } = data?.data?.attributes;

@@ -17,6 +17,7 @@ root.render(
         horizontal: "center",
       }}
       TransitionComponent={Fade}
+      preventDuplicate={true}
     >
       <App />
     </SnackbarProvider>

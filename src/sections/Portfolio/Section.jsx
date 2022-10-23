@@ -1,15 +1,23 @@
 import { useGetProjectsQuery } from "../../features/portfolio/portfolioAPI";
 import getPortfolioData from "../../utils/getPortfolioData";
+import LoadingOrErrorBody from "./LoadingOrErrorBody";
 import PortfolioBody from "./PortfolioBody";
 import PortfolioHead from "./PortfolioHead";
 
 export default function Section() {
   let content;
   const { data: projects, isLoading, isError } = useGetProjectsQuery();
-  if (isLoading) content = "All Projects Loading ...";
-  if (!isLoading && isError) content = "Error while Fetching All Projects";
+  if (isLoading)
+    content = <LoadingOrErrorBody message="Recent Projects Loading ..." />;
+  if (!isLoading && isError)
+    content = (
+      <LoadingOrErrorBody
+        isError={true}
+        message="Network Error while Fetching Recent Projects"
+      />
+    );
   if (!isLoading && !isError && projects?.data?.length === 0)
-    content = "No Project Found";
+    content = "No Recent Project Found";
   if (!isLoading && !isError && projects?.data?.length > 0) {
     const { filtersDefault, cardsLayout } = getPortfolioData(projects?.data);
     content = (

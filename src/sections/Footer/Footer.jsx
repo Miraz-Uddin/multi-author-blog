@@ -1,21 +1,19 @@
 import React from "react";
+import PreLoader from "../../components/ui/PreLoader";
 import { useGetFooterInfoQuery } from "../../features/footer/footerAPI";
 import ContactForm from "./ContactForm";
-import FooterLoading from "./FooterLoading";
+import LoadingOrError from "./LoadingOrError";
 
 export default function Footer() {
   const { data, isLoading, isError } = useGetFooterInfoQuery();
   let content;
-  if (isLoading) content = <FooterLoading />;
+  if (isLoading) content = <PreLoader />;
   if (!isLoading && isError)
     content = (
-      <div className="col-md-12 col-lg-12">
-        <div className="section_title_1 text-center mx-auto pb_60 wow animated slideInUp">
-          <h2 className="title text-uppercase">
-            Error while fetching About Information
-          </h2>
-        </div>{" "}
-      </div>
+      <LoadingOrError
+        isError={true}
+        message={"Error while fetching Footer Data"}
+      />
     );
   if (!isLoading && !isError) {
     const {

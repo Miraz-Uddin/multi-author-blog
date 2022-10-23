@@ -4,21 +4,26 @@ import { Link } from "react-router-dom";
 import { useGetBlogsQuery } from "../../features/blog/blogAPI";
 import Author from "./Author";
 import BlogHead from "./BlogHead";
-import BlogLoading from "./BlogLoading";
 import CommonBlogMessages from "./CommonBlogMessages";
+import LoadingOrErrorBody from "./LoadingOrErrorBody";
 
 export default function Blog() {
+  let content;
   const {
     data: blogs,
     isLoading,
     isError,
   } = useGetBlogsQuery({ tags: null, monthYear: null });
-  // decide what to render
-  let content;
-  if (isLoading) content = <BlogLoading />;
-  // content = <CommonBlogMessages message={"All Blogs Loading ..."} />;
+
+  if (isLoading)
+    content = <LoadingOrErrorBody message={"All Blogs Loading ..."} />;
   if (!isLoading && isError)
-    content = <CommonBlogMessages message={"Error while Fetching All Blogs"} />;
+    content = (
+      <LoadingOrErrorBody
+        isError={true}
+        message={"Error while Fetching All Blogs"}
+      />
+    );
   if (!isLoading && !isError && blogs?.data?.length === 0)
     content = <CommonBlogMessages message={"No Blogs Found"} />;
   if (!isLoading && !isError && blogs?.data?.length > 0)

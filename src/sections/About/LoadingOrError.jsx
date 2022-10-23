@@ -3,7 +3,8 @@ import React from "react";
 
 export default function LoadingOrError({ message, isError }) {
   const { enqueueSnackbar } = useSnackbar();
-  enqueueSnackbar(message, { variant: isError ? "error" : "info" });
+  if (isError)
+    enqueueSnackbar(message, { variant: isError ? "error" : "info" });
   return (
     <div className="container">
       <div className="row">
@@ -51,8 +52,8 @@ export default function LoadingOrError({ message, isError }) {
                       emai@example.com
                     </li>
                     <li>
-                      <span className="color_secondery">Phone :</span> +00 61
-                      700 800
+                      <span className="color_secondery">Phone :</span> +12 23
+                      456 789
                     </li>
                   </ul>
                 </div>
@@ -60,14 +61,13 @@ export default function LoadingOrError({ message, isError }) {
                   <ul>
                     <li>
                       <span className="color_secondery">Date of Birth :</span>{" "}
-                      14 December 1993
+                      29 February 1971
                     </li>
                     <li>
-                      <span className="color_secondery">Blood Group :</span> A+
+                      <span className="color_secondery">Blood Group :</span> N/A
                     </li>
                     <li>
-                      <span className="color_secondery">Address :</span>{" "}
-                      Mouroubra WA 6472, Australia.
+                      <span className="color_secondery">Address :</span> N/A
                     </li>
                   </ul>
                 </div>
