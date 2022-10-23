@@ -9,19 +9,17 @@ import reportWebVitals from "./reportWebVitals";
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <SnackbarProvider
-        maxSnack={1}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        TransitionComponent={Fade}
-      >
-        <App />
-      </SnackbarProvider>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <SnackbarProvider
+      maxSnack={1}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "center",
+      }}
+      TransitionComponent={Fade}
+    >
+      <App />
+    </SnackbarProvider>
+  </Provider>
 );
 reportWebVitals();

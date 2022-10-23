@@ -1,7 +1,8 @@
 import React from "react";
 import Typed from "react-typed";
+import PreLoader from "../../components/ui/PreLoader";
 import { useGetBannerInfoQuery } from "../../features/banner/bannerAPI";
-import BannerLoader from "./BannerLoader";
+import LoadingOrError from "./LoadingOrError";
 
 export default function Banner() {
   const onButtonClick = (url, fileName) => {
@@ -17,12 +18,14 @@ export default function Banner() {
   };
   let content;
   const { data, isLoading, isError } = useGetBannerInfoQuery();
-  if (isLoading) {
-    // content = "Banner Information Loading ...";
-    content = <BannerLoader message="Banner Information Loading ..." />;
-  }
+  if (isLoading) content = <PreLoader />;
   if (!isLoading && isError)
-    content = "Error while fetching Banner Information";
+    content = (
+      <LoadingOrError
+        isError={true}
+        message="Network Error while fetching Banner Information"
+      />
+    );
   if (!isLoading && !isError) {
     const {
       title,
