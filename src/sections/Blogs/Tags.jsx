@@ -3,14 +3,14 @@ import { useGetTagsQuery } from "../../features/tag/tagAPI";
 import styles from "./blogCustom.module.css";
 
 export default function Tags({ tagsClicked, selectedTag }) {
-  const { data: tags, isLoading, hasError } = useGetTagsQuery();
+  const { data: tags, isLoading, isError } = useGetTagsQuery();
   // decide what to render
   let content;
   if (isLoading) content = <li>Tags Loading ...</li>;
-  if (!isLoading && hasError) content = <li>Error while fetching Tags</li>;
-  if (!isLoading && !hasError && tags?.data?.length === 0)
+  if (!isLoading && isError) content = <li>Error while fetching Tags</li>;
+  if (!isLoading && !isError && tags?.data?.length === 0)
     content = <li>No Tags Found</li>;
-  if (!isLoading && !hasError && tags?.data?.length > 0)
+  if (!isLoading && !isError && tags?.data?.length > 0)
     content = tags?.data.map((tag) => (
       <li key={tag.id}>
         <span

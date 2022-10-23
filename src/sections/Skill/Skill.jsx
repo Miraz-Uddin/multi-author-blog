@@ -4,13 +4,13 @@ import LinearProgressWithLabel from "./LinearProgressWithLabel";
 import SkillLoading from "./SkillLoading";
 
 export default function Skill() {
-  const { data: skill, isLoading, hasError } = useGetSkillQuery();
+  const { data: skill, isLoading, isError } = useGetSkillQuery();
   let content;
   if (isLoading)
     content = <SkillLoading message="Skill Information Loading ..." />;
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = <SkillLoading message="Error while fetching About Information" />;
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     const {
       section,
       title,

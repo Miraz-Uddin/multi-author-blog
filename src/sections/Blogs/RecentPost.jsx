@@ -8,16 +8,16 @@ export default function RecentPost() {
   const {
     data: blogs,
     isLoading,
-    hasError,
+    isError,
   } = useGetBlogsQuery({ tags: null, monthYear: null });
 
   // decide what to render
   let content;
   if (isLoading) content = <BlogLoading />;
-  if (!isLoading && hasError) content = <span>No Blogs Found</span>;
-  if (!isLoading && !hasError && blogs.data?.length === 0)
+  if (!isLoading && isError) content = <span>No Blogs Found</span>;
+  if (!isLoading && !isError && blogs.data?.length === 0)
     content = <span>No Blogs Found</span>;
-  if (!isLoading && !hasError && blogs.data?.length > 0) {
+  if (!isLoading && !isError && blogs.data?.length > 0) {
     content = blogs?.data
       .slice()
       .sort((a, b) => {

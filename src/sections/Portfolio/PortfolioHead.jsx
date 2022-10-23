@@ -2,19 +2,19 @@ import React from "react";
 import { useGetPortfolioHeadQuery } from "../../features/portfolio/portfolioAPI";
 
 export default function PortfolioHead() {
-  const { data, isLoading, hasError } = useGetPortfolioHeadQuery();
+  const { data, isLoading, isError } = useGetPortfolioHeadQuery();
   let content;
   if (isLoading)
     content = (
       <h2 className="title text-uppercase">Portfolio Head Loading ...</h2>
     );
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = (
       <h2 className="title text-uppercase">
         Error while fetching Portfolio Head
       </h2>
     );
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     const { section, title, subtitle } = data?.data?.attributes;
     content = (
       <>

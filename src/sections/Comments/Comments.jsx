@@ -7,7 +7,7 @@ import SingleComment from "./SingleComment";
 export default function Comments({ blog }) {
   const [selectedLi, setSelectedLi] = useState(null);
   let { blogId } = useParams();
-  const { data: comments, isLoading, hasError } = useGetCommentsQuery(blogId);
+  const { data: comments, isLoading, isError } = useGetCommentsQuery(blogId);
   const replyBtnClicked = (id) => {
     setSelectedLi(id);
   };
@@ -20,17 +20,17 @@ export default function Comments({ blog }) {
         Comments Loading ...
       </h4>
     );
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = (
       <h4 className="text-uppercase color_primary mb_30">
         Error while fetching Comments
       </h4>
     );
-  if (!isLoading && !hasError && comments.data?.length === 0)
+  if (!isLoading && !isError && comments.data?.length === 0)
     content = (
       <h4 className="text-uppercase color_primary mb_30">Comments (0)</h4>
     );
-  if (!isLoading && !hasError && comments.data?.length > 0) {
+  if (!isLoading && !isError && comments.data?.length > 0) {
     const allComments = getSeparations(comments.data);
     const commentsList = allComments
       .sort((a, b) => {

@@ -6,8 +6,8 @@ import { useGetHeaderInfoQuery } from "../../features/head/headAPI";
 
 export default function MainNavigation() {
   let content;
-  const { data, isLoading, hasError } = useGetHeaderInfoQuery();
-  if (isLoading || (!isLoading && hasError))
+  const { data, isLoading, isError } = useGetHeaderInfoQuery();
+  if (isLoading || (!isLoading && isError))
     content = (
       <img
         className="nav-logo"
@@ -15,7 +15,7 @@ export default function MainNavigation() {
         alt="logo"
       />
     );
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     const { logo_white_bg } = data?.data?.attributes;
     const logoWhiteURL = logo_white_bg?.data?.attributes?.url;
     const logoWhiteImage =

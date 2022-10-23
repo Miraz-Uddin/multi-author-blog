@@ -6,14 +6,14 @@ import settings from "./settings";
 import TestimonialLoading from "./TestimonialLoading";
 
 export default function TestimonialBody() {
-  const { data: testimonials, isLoading, hasError } = useGetTestimonialsQuery();
+  const { data: testimonials, isLoading, isError } = useGetTestimonialsQuery();
   // decide what to render
   let content;
   if (isLoading) content = <TestimonialLoading />;
-  if (!isLoading && hasError) content = "Error while Fetching All Testimonials";
-  if (!isLoading && !hasError && testimonials?.data?.length === 0)
+  if (!isLoading && isError) content = "Error while Fetching All Testimonials";
+  if (!isLoading && !isError && testimonials?.data?.length === 0)
     content = "No Testimonials Found";
-  if (!isLoading && !hasError && testimonials?.data?.length > 0) {
+  if (!isLoading && !isError && testimonials?.data?.length > 0) {
     content = testimonials?.data.map((testimonial) => (
       <Client client={testimonial?.attributes} key={testimonial?.id} />
     ));

@@ -4,10 +4,10 @@ import ContactForm from "./ContactForm";
 import FooterLoading from "./FooterLoading";
 
 export default function Footer() {
-  const { data, isLoading, hasError } = useGetFooterInfoQuery();
+  const { data, isLoading, isError } = useGetFooterInfoQuery();
   let content;
   if (isLoading) content = <FooterLoading />;
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = (
       <div className="col-md-12 col-lg-12">
         <div className="section_title_1 text-center mx-auto pb_60 wow animated slideInUp">
@@ -17,7 +17,7 @@ export default function Footer() {
         </div>{" "}
       </div>
     );
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     const {
       section,
       title,

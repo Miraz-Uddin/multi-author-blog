@@ -4,13 +4,13 @@ import ServiceItem from "./ServiceItem";
 import ServiceLoading from "./ServiceLoading";
 
 export default function ServiceList() {
-  const { data: service, isLoading, hasError } = useGetServiceQuery();
+  const { data: service, isLoading, isError } = useGetServiceQuery();
   let content;
   if (isLoading)
     content = <ServiceLoading message="Service Information Loading ..." />;
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = <ServiceLoading message="Error while fetching Services" />;
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     const { section, title, subtitle, p_services } = service?.data?.attributes;
     content = (
       <>

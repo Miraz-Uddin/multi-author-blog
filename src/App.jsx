@@ -25,12 +25,12 @@ function App() {
   const authChecked = useAuthCheck();
   let faviconURL;
   let headTitle;
-  const { data, isLoading, hasError } = useGetHeaderInfoQuery();
-  if (isLoading || (!isLoading && hasError)) {
+  const { data, isLoading, isError } = useGetHeaderInfoQuery();
+  if (isLoading || (!isLoading && isError)) {
     faviconURL = "./images/favicon.ico";
     headTitle = "Portfolio";
   }
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     faviconURL = data?.data?.attributes?.head_favicon?.data?.attributes?.url;
     headTitle = data?.data?.attributes?.head_title;
   }

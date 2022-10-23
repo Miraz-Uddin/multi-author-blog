@@ -16,14 +16,14 @@ export default function Banner() {
     });
   };
   let content;
-  const { data, isLoading, hasError } = useGetBannerInfoQuery();
+  const { data, isLoading, isError } = useGetBannerInfoQuery();
   if (isLoading) {
     // content = "Banner Information Loading ...";
     content = <BannerLoader message="Banner Information Loading ..." />;
   }
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = "Error while fetching Banner Information";
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     const {
       title,
       short_description,

@@ -4,14 +4,14 @@ import { useGetCounterQuery } from "../../features/counter/counterAPI";
 import CounterLoading from "./CounterLoading";
 
 export default function Counter() {
-  const { data: counter, isLoading, hasError } = useGetCounterQuery();
+  const { data: counter, isLoading, isError } = useGetCounterQuery();
   // decide what to render
   let content;
   if (isLoading)
     content = <CounterLoading message="Counter Data Loading ..." />;
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = <CounterLoading message="Error while fetching Counter Data" />;
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     const { years_of_experience, projects_done, happy_clients } =
       counter?.data?.attributes;
     content = (

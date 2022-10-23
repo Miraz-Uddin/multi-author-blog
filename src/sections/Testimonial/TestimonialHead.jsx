@@ -2,19 +2,19 @@ import React from "react";
 import { useGetTestimonialHeadQuery } from "../../features/testimonial/testimonialAPI";
 
 export default function TestimonialHead() {
-  const { data, isLoading, hasError } = useGetTestimonialHeadQuery();
+  const { data, isLoading, isError } = useGetTestimonialHeadQuery();
   let content;
   if (isLoading)
     content = (
       <h2 className="title text-uppercase">Testimonial Head Loading ...</h2>
     );
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = (
       <h2 className="title text-uppercase">
         Error while fetching Testimonial Head
       </h2>
     );
-  if (!isLoading && !hasError) {
+  if (!isLoading && !isError) {
     const { section, title, subtitle } = data?.data?.attributes;
     content = (
       <>

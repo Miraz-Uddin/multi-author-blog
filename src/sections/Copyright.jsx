@@ -4,11 +4,11 @@ import { userLoggedOut } from "../features/auth/authSlice";
 import { useGetCopyrightInfoQuery } from "../features/copyright/copyrightAPI";
 
 export default function Copyright() {
-  const { data, isLoading, hasError } = useGetCopyrightInfoQuery();
+  const { data, isLoading, isError } = useGetCopyrightInfoQuery();
   let content;
   if (isLoading) content = "... ...";
-  if (!isLoading && hasError) content = "Error ..";
-  if (!isLoading && !hasError) {
+  if (!isLoading && isError) content = "Error ..";
+  if (!isLoading && !isError) {
     const { copyright_limit_year, copyright_owner } = data?.data?.attributes;
     content = copyright_limit_year + " " + copyright_owner;
   }

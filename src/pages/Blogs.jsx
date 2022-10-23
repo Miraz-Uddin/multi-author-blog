@@ -16,7 +16,7 @@ const Blogs = () => {
   const {
     data: blogs,
     isLoading,
-    hasError,
+    isError,
   } = useGetBlogsQuery({ tags, monthYear });
 
   const tagsClicked = (tagName) => {
@@ -42,10 +42,10 @@ const Blogs = () => {
   // decide what to render
   let content;
   if (isLoading) content = <BlogLoading />;
-  if (!isLoading && hasError) content = <span>No Blogs Found</span>;
-  if (!isLoading && !hasError && blogs?.data?.length === 0)
+  if (!isLoading && isError) content = <span>No Blogs Found</span>;
+  if (!isLoading && !isError && blogs?.data?.length === 0)
     content = <span>No Blogs Found</span>;
-  if (!isLoading && !hasError && blogs?.data?.length > 0)
+  if (!isLoading && !isError && blogs?.data?.length > 0)
     content = currentItems.map((blog) => {
       return (
         <Link
@@ -74,7 +74,7 @@ const Blogs = () => {
             <div className="col-md-7 col-lg-8">
               <div className="blog_list mb_60">{content}</div>
               {!isLoading &&
-                !hasError &&
+                !isError &&
                 blogs?.data.length > 0 &&
                 blogs?.data.length > itemsPerPage && (
                   <Pagination

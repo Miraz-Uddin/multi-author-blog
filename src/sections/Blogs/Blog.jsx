@@ -11,17 +11,17 @@ export default function Blog() {
   const {
     data: blogs,
     isLoading,
-    hasError,
+    isError,
   } = useGetBlogsQuery({ tags: null, monthYear: null });
   // decide what to render
   let content;
   if (isLoading) content = <BlogLoading />;
   // content = <CommonBlogMessages message={"All Blogs Loading ..."} />;
-  if (!isLoading && hasError)
+  if (!isLoading && isError)
     content = <CommonBlogMessages message={"Error while Fetching All Blogs"} />;
-  if (!isLoading && !hasError && blogs?.data?.length === 0)
+  if (!isLoading && !isError && blogs?.data?.length === 0)
     content = <CommonBlogMessages message={"No Blogs Found"} />;
-  if (!isLoading && !hasError && blogs?.data?.length > 0)
+  if (!isLoading && !isError && blogs?.data?.length > 0)
     content = blogs?.data
       .slice()
       .sort((a, b) => {
@@ -135,7 +135,7 @@ export default function Blog() {
             <div className="blog_grid_1 wow animated slideInUp">
               <div className="row">{content}</div>
               <div className="mx-auto text-center mt_60">
-                {!isLoading && !hasError && blogs?.data?.length > 0 && (
+                {!isLoading && !isError && blogs?.data?.length > 0 && (
                   <Link to={`/blogs`} className="btn btn-default">
                     View All Blogs
                   </Link>
