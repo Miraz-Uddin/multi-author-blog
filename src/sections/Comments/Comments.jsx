@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+// import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useGetCommentsQuery } from "../../features/comment/commentAPI";
 import getSeparations from "../../utils/getSeparations";
@@ -11,7 +12,7 @@ export default function Comments({ blog }) {
   const replyBtnClicked = (id) => {
     setSelectedLi(id);
   };
-  useEffect(() => {}, [comments]);
+  // useEffect(() => {}, [comments]);
   // decide what to render
   let content;
   if (isLoading)
@@ -60,7 +61,7 @@ export default function Comments({ blog }) {
       </>
     );
   }
-  useEffect(() => {}, [comments]);
+  // useEffect(() => {}, [comments]);
 
   return <div className="comment_area mt_60">{content}</div>;
 }

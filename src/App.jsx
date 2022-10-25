@@ -7,12 +7,15 @@ import {
 } from "react-router-dom";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "../node_modules/slick-carousel/slick/slick.css";
+import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import ThemeChanger from "./components/ui/ThemeChanger";
+import BlogEdit from "./dashboard/blog/BlogEdit";
 import { useGetHeaderInfoQuery } from "./features/head/headAPI";
 import useAuthCheck from "./hooks/useAuthCheck";
 import Blogs from "./pages/Blogs";
 import Construction from "./pages/Construction";
+import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -74,6 +77,22 @@ function App() {
                   <PublicRoute>
                     <Login />
                   </PublicRoute>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/blogs/:blogId/edit"
+                element={
+                  <PrivateRoute>
+                    <BlogEdit />
+                  </PrivateRoute>
                 }
               />
               <Route

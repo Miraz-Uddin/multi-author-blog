@@ -82,7 +82,7 @@ export default function Register() {
         previousPageName="Home"
         currentPageName="Register"
       />
-      <section id="skill" className="py_80 bg_secondery full_row">
+      <section className="py_80 bg_secondery full_row">
         <div className="container">
           <div className="my_skill" id="authentication">
             <form className="signup-form auth-form" onSubmit={handleSubmit}>

@@ -58,6 +58,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   line-height: 28px;
+  text-align: start;
 }
 
 h1,
@@ -2808,6 +2809,51 @@ label.radios {
   margin: 15px 0;
 }
 
+.nav-item.dash .nav-link {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.nav-item.dash .nav-link:hover {
+  color: #ffb32f;
+}
+
+.nav-scroll .navbar-light .nav-item.dash .nav-link {
+  color: #1e283c;
+}
+
+.nav-item.dash .nav-link.active {
+  color: #ffb32f;
+  position: relative;
+}
+
+.nav-link.active {
+  color: #ffb32f;
+}
+
+.nav-item.dash .nav-link::before {
+  position: absolute;
+  content: "";
+  width: 80%;
+  display: table;
+  height: 2px;
+  left: 50%;
+  bottom: 0px;
+  opacity: 0;
+  background-color: #ffb32f;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transform: translateX(-50%);
+}
+
+.nav-item.dash .nav-link.active::before {
+  opacity: 1;
+  transform: scaleX(1);
+  transform: translateX(-50%);
+}
 
 
 
@@ -2852,12 +2898,20 @@ label.radios {
 // Large devices (desktops, 992px and up)
 ============================================================*/
 @media (max-width: 1399px) {
+  .nav-item.port-hide {
+    display: block;
+  }
+
   .section_title_1 .title span {
     font-size: 15px;
   }
 }
 
 @media (max-width: 1199px) {
+  .nav-item.port-hide {
+    display: none;
+  }
+
   h1 {
     font-size: 28px;
     line-height: 32px;
@@ -3000,6 +3054,10 @@ label.radios {
 // Medium devices (tablets, 768px and up)
 ============================================================*/
 @media (max-width: 991px) {
+  .nav-item.port-hide {
+    display: block;
+  }
+
   .main_nav {
     background-color: #818181;
   }

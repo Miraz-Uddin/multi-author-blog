@@ -18,15 +18,43 @@ const blogAPI = apiSlice.injectEndpoints({
         }
         return mainUrl + query;
       },
-      providesTags: ["Comment"],
+      providesTags: ["Comment", "UpdateBlog"],
     }),
     getBlog: builder.query({
       query: (blogId) =>
-        `/blogs/${blogId}?[fields][0]=title&[fields][1]=long_description&[fields][2]=publishedAt&populate[image][fields][0]=url&populate[author][fields][0]=username&populate[tags][fields][0]=title&populate[comments][fields][0]=message&populate[comments][fields][1]=parentId`,
-      providesTags: ["Comment"],
+        `/blogs/${blogId}?populate[image][fields][0]=url&populate[author][fields][0]=username&populate[tags][fields][0]=title&populate[comments][fields][0]=message&populate[comments][fields][1]=parentId`,
+      providesTags: ["Comment", "UpdateBlog"],
+    }),
+    getBLogsByAuthor: builder.query({
+      query: (userId) =>
+        `/blogs?[fields][0]=title&[fields][1]=short_description&[fields][2]=publishedAt&populate[image][fields][0]=url&populate[author][fields][0]=username&populate[comments]=*&populate[tags][fields][0]=title&filters[author][id][$eq]=${userId}`,
+      providesTags: ["Comment", "UpdateBlog"],
+    }),
+    storeBlog: builder.mutation({
+      query: (data) => ({
+        url: "/blogs",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    updateBlog: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/blogs/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["UpdateBlog"],
     }),
   }),
 });
 
-export const { useGetBlogsQuery, useGetBlogQuery, useGetBlogHeadQuery } =
-  blogAPI;
+export const {
+  useGetBlogsQuery,
+  useGetBlogQuery,
+  useGetBlogHeadQuery,
+  useGetBLogsByAuthorQuery,
+  useUpdateBlogMutation,
+  useStoreBlogMutation,
+} = blogAPI;
+
+// {{base_url}}

@@ -33,7 +33,7 @@ export default function SingleBlogDetails({ blog }) {
         <div className="blog_img overlay_one wow animated slideInUp">
           <img src={blogImage} alt="blog" className={styles.blogImage} />
         </div>
-        <div className="blog_content bg_white">
+        <div className="blog_content bg_white wow animated slideInUp">
           <div className="blog_title mb_20 color_primary">
             <h5>{title}</h5>
           </div>
@@ -45,10 +45,10 @@ export default function SingleBlogDetails({ blog }) {
             <i className="fa fa-comment" aria-hidden="true"></i>
             <span className="color_primary">{commentsCount}</span>
           </div>
-          <div className="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
-            <div className="mt_15 wow animated slideInUp">
-              {Parser(long_description)}
-            </div>
+        </div>
+        <div className="bg_white" style={{ padding: "0 15px 30px" }}>
+          <div className={`${styles.singleBlogContent}`}>
+            {Parser(long_description)}
           </div>
           <div className="share_post mt_30 wow animated slideInUp">
             <h4 className="float-left mr_20">Share : </h4>

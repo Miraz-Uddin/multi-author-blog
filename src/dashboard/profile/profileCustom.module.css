@@ -1,0 +1,29 @@
+.input {
+    padding-left: 12px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    font-style: italic;
+    width: 85%;
+}
+
+.textarea {
+    padding-left: 12px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    font-style: italic;
+    resize: none;
+    width: 85%;
+    min-height: 50px;
+    line-height: 20px;
+}
+
+.textareaLabel {
+    padding-left: 10px;
+    vertical-align: top;
+    min-width: 90px
+}
+
+.label {
+    padding-left: 10px;
+    min-width: 90px
+}

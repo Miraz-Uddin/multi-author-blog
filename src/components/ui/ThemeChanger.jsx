@@ -59,10 +59,12 @@ export default function ThemeChanger() {
 
   const handleScroll = (evt) => {
     const scrolledValue = window.scrollY;
-    if (scrolledValue >= 600) {
+    if (scrolledValue >= 150) {
       document.querySelector(".scrollToTop").classList.add("visible");
+      document.querySelector(".main_nav").classList.add("nav-scroll");
     } else {
       document.querySelector(".scrollToTop").classList.remove("visible");
+      document.querySelector(".main_nav").classList.remove("nav-scroll");
     }
   };
 

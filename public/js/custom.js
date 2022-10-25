@@ -1,17 +1,17 @@
 //=====================================================================================
 
 (function ($) {
-  $(window).on("scroll", function () {
-    var bodyScroll = $(window).scrollTop(),
-      navbar = $(".main_nav"),
-      logo = $(".main_nav .navbar-brand> img");
+  // $(window).on("scroll", function () {
+  //   var bodyScroll = $(window).scrollTop(),
+  //     navbar = $(".main_nav"),
+  //     logo = $(".main_nav .navbar-brand> img");
 
-    if (bodyScroll > 100) {
-      navbar.addClass("nav-scroll");
-    } else {
-      navbar.removeClass("nav-scroll");
-    }
-  });
+  //   if (bodyScroll > 100) {
+  //     navbar.addClass("nav-scroll");
+  //   } else {
+  //     navbar.removeClass("nav-scroll");
+  //   }
+  // });
 
   if ($(".wow").length) {
     var wow = new WOW({

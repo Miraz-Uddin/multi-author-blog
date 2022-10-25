@@ -55,7 +55,7 @@ export default function Login() {
         previousPageName="Home"
         currentPageName="Log in"
       />
-      <section id="skill" className="py_80 bg_secondery full_row">
+      <section className="py_80 bg_secondery full_row">
         <div className="container">
           <div className="my_skill" id="authentication">
             <div className="row">
