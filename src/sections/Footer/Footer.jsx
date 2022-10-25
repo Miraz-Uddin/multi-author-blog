@@ -137,7 +137,11 @@ export default function Footer() {
     );
   }
   return (
-    <section id="contact" className="py_80 full_row bg_white" name="contact">
+    <section
+      id="contact"
+      className="py_80 full_row bg_white"
+      name="naviagate-to-contact"
+    >
       <div className="container">
         <div className="row">{content}</div>
       </div>

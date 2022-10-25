@@ -79,6 +79,9 @@ export default function MainNavigation() {
   const checkLoggedIn = () => {
     if (!user) {
       enqueueSnackbar("Please Log in to access", { variant: "info" });
+      const el = document.querySelectorAll(".nav-link.active");
+      const arr = Array.prototype.slice.call(el);
+      arr.map((el) => el.classList.remove("active"));
     } else {
       const el = document.querySelectorAll(".nav-link.active");
       const arr = Array.prototype.slice.call(el);

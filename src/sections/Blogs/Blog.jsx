@@ -132,7 +132,11 @@ export default function Blog() {
         );
       });
   return (
-    <section id="blog" className="py_80 bg_secondery full_row" name="blog">
+    <section
+      id="blog"
+      className="py_80 bg_secondery full_row"
+      name="naviagate-to-blog"
+    >
       <div className="container">
         <div className="row">
           <BlogHead />

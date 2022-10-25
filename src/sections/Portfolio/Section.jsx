@@ -28,7 +28,11 @@ export default function Section() {
     );
   }
   return (
-    <section id="portfolio" className="py_80 bg_secondery full_row">
+    <section
+      id="portfolio"
+      className="py_80 bg_secondery full_row"
+      name="naviagate-to-portfolio"
+    >
       <div className="container">
         <div className="row">
           <PortfolioHead />

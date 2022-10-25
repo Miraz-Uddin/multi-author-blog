@@ -53,7 +53,6 @@ export default function Banner() {
     content = (
       <section
         id="main_banner"
-        className=""
         style={{
           position: "relative",
           background: `url(${bannerImage})`,

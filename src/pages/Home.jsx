@@ -19,11 +19,11 @@ export default function Home() {
       <About />
       <Skill />
       <Counter />
-      <ServiceList name="naviagate-to-services" />
-      <Section name="naviagate-to-portfolio" />
-      <Testimonials name="naviagate-to-testimonial" />
-      <Blog name="naviagate-to-blog" />
-      <Footer name="naviagate-to-contact" />
+      <ServiceList />
+      <Section />
+      <Testimonials />
+      <Blog />
+      <Footer />
     </>
   );
 }

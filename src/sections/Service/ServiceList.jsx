@@ -50,7 +50,11 @@ export default function ServiceList() {
     );
   }
   return (
-    <section id="services" className="py_80 full_row bg_white" name="services">
+    <section
+      id="services"
+      className="py_80 full_row bg_white"
+      name="naviagate-to-services"
+    >
       <div className="container">
         <div className="row">{content}</div>
       </div>

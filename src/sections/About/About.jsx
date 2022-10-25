@@ -129,7 +129,11 @@ export default function About() {
   }
 
   return (
-    <section id="about" className="py_80 full_row bg_white" name="about">
+    <section
+      id="about"
+      className="py_80 full_row bg_white"
+      name="naviagate-to-about"
+    >
       {content}
     </section>
   );

@@ -66,7 +66,11 @@ export default function Skill() {
     );
   }
   return (
-    <section id="skill" className="py_80 bg_secondery full_row" name="skill">
+    <section
+      id="skill"
+      className="py_80 bg_secondery full_row"
+      name="naviagate-to-skill"
+    >
       {content}
     </section>
   );

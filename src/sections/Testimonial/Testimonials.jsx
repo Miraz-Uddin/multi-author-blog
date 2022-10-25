@@ -7,7 +7,7 @@ export default function Testimonials() {
     <section
       id="testimonial"
       className="py_80 full_row bg_white"
-      name="testimonial"
+      name="naviagate-to-testimonial"
     >
       <div className="container">
         <div className="row">
