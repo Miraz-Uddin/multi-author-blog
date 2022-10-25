@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Breadcrumbs from "../components/ui/Breadcrumbs";
 import BlogIndex from "../dashboard/blog/BlogIndex";
 import CommentIndex from "../dashboard/comment/CommentIndex";
 import ProfileIndex from "../dashboard/profile/ProfileIndex";
 import { userLoggedOut } from "../features/auth/authSlice";
 import { useGetProfileQuery } from "../features/profile/profileAPI";
+import styles from "./custom.module.css";
 
 export default function Dashboard() {
   const { user } = useSelector((state) => state.auth) || {};
@@ -39,13 +41,13 @@ export default function Dashboard() {
             <div className="row">
               <div className="col-md-2">
                 <div
-                  className="nav flex-column nav-pills"
+                  className={`nav flex-column nav-pills ${styles.sidebar}`}
                   id="v-pills-tab"
                   role="tablist"
                   aria-orientation="vertical"
                 >
-                  <a
-                    className="nav-link active"
+                  <span
+                    className={`${styles.button} nav-link active w-75 `}
                     id="v-pills-blog-tab"
                     data-toggle="pill"
                     href="#v-pills-blog"
@@ -53,11 +55,17 @@ export default function Dashboard() {
                     aria-controls="v-pills-blog"
                     aria-selected="true"
                   >
-                    blog
-                  </a>
-
-                  <a
-                    className="nav-link"
+                    <span className="d-flex justify-content-between">
+                      <span>blogs</span>
+                      <Link to={"/"}>
+                        <span className={`addButton ${styles.addButton}`}>
+                          <i className="fa fa-plus"></i>{" "}
+                        </span>
+                      </Link>
+                    </span>
+                  </span>
+                  <span
+                    className={`${styles.button} nav-link w-75 `}
                     id="v-pills-comment-tab"
                     data-toggle="pill"
                     href="#v-pills-comment"
@@ -65,10 +73,17 @@ export default function Dashboard() {
                     aria-controls="v-pills-comment"
                     aria-selected="false"
                   >
-                    comment
-                  </a>
-                  <a
-                    className="nav-link"
+                    <span className="d-flex justify-content-between">
+                      <span>comments</span>
+                      <Link to={"/"}>
+                        <span className={`addButton ${styles.addButton}`}>
+                          <i className="fa fa-plus"></i>{" "}
+                        </span>
+                      </Link>
+                    </span>
+                  </span>
+                  <span
+                    className={`${styles.button} nav-link w-75 `}
                     id="v-pills-profile-tab"
                     data-toggle="pill"
                     href="#v-pills-profile"
@@ -76,10 +91,17 @@ export default function Dashboard() {
                     aria-controls="v-pills-profile"
                     aria-selected="false"
                   >
-                    Profile
-                  </a>
+                    <span className="d-flex justify-content-between">
+                      <span>profile</span>
+                      <Link to={"/"}>
+                        <span className={`addButton ${styles.addButton}`}>
+                          <i className="fa fa-plus"></i>{" "}
+                        </span>
+                      </Link>
+                    </span>
+                  </span>
                   <span
-                    className="nav-link"
+                    className={`${styles.button} nav-link w-75 `}
                     data-toggle="pill"
                     style={{ cursor: "pointer" }}
                     onClick={handleLogOut}

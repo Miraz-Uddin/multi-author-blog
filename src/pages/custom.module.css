@@ -1,0 +1,27 @@
+.sidebar .button {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.addButton {
+    position: absolute;
+    right: -28px;
+    padding: 8px;
+    color: #fff;
+    background: rgb(30, 40, 60);
+    background: transparent;
+    top: 0px;
+}
+
+.addButton i {
+    pointer-events: none;
+}
+
+.button.active {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
