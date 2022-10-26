@@ -10,6 +10,7 @@ import "../node_modules/slick-carousel/slick/slick.css";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 // import ThemeChanger from "./components/ui/ThemeChanger";
+import { animateScroll as scroll } from "react-scroll";
 import BlogEdit from "./dashboard/blog/BlogEdit";
 import CommentEdit from "./dashboard/comment/CommentEdit";
 import ProfileEdit from "./dashboard/profile/ProfileEdit";
@@ -57,6 +58,24 @@ function App() {
     }
     link.innerHTML = headTitle;
   }, [headTitle]);
+
+  const handleScroll = (evt) => {
+    const scrolledValue = window.scrollY;
+    if (scrolledValue >= 150) {
+      document.querySelector(".scrollToTop").classList.add("visible");
+      document.querySelector(".main_nav").classList.add("nav-scroll");
+    } else {
+      document.querySelector(".scrollToTop").classList.remove("visible");
+      document.querySelector(".main_nav").classList.remove("nav-scroll");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.addEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return !authChecked ? (
     <></>
@@ -128,6 +147,19 @@ function App() {
             <Copyright />
           </div>
         </div>
+        <span
+          className="scrollToTop"
+          onClick={() => scroll.scrollToTop()}
+          // style={{
+          //   color: `${mode === "normal" ? "#1e283c" : "#fff"}`,
+          //   backgroundColor: `${mode === "normal" ? "#fff" : "#1e283c"}`,
+          // }}
+        >
+          <i
+            className="fa fa-arrow-up"
+            // style={{ color: `${mode === "normal" ? "#1e283c" : "#fff"}` }}
+          ></i>
+        </span>
       </Router>
     </>
   );

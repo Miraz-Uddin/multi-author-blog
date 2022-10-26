@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { animateScroll as scroll } from "react-scroll";
+
 import { themeChange } from "../../features/theme/themeSlice";
 import changeColor from "../../utils/changeColor";
 
@@ -56,24 +56,6 @@ export default function ThemeChanger() {
       })
     );
   };
-
-  const handleScroll = (evt) => {
-    const scrolledValue = window.scrollY;
-    if (scrolledValue >= 150) {
-      document.querySelector(".scrollToTop").classList.add("visible");
-      document.querySelector(".main_nav").classList.add("nav-scroll");
-    } else {
-      document.querySelector(".scrollToTop").classList.remove("visible");
-      document.querySelector(".main_nav").classList.remove("nav-scroll");
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.addEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     changeColor(".bg_secondery", bgSecondary, "backgroundColor");
@@ -133,19 +115,6 @@ export default function ThemeChanger() {
           <span className="panel-title"></span>
         </div>
       </div>
-      <span
-        className="scrollToTop"
-        onClick={() => scroll.scrollToTop()}
-        style={{
-          color: `${mode === "normal" ? "#1e283c" : "#fff"}`,
-          backgroundColor: `${mode === "normal" ? "#fff" : "#1e283c"}`,
-        }}
-      >
-        <i
-          className="fa fa-arrow-up"
-          style={{ color: `${mode === "normal" ? "#1e283c" : "#fff"}` }}
-        ></i>
-      </span>
     </>
   );
 }
