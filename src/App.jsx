@@ -9,7 +9,7 @@ import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "../node_modules/slick-carousel/slick/slick.css";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
-import ThemeChanger from "./components/ui/ThemeChanger";
+// import ThemeChanger from "./components/ui/ThemeChanger";
 import BlogEdit from "./dashboard/blog/BlogEdit";
 import CommentEdit from "./dashboard/comment/CommentEdit";
 import ProfileEdit from "./dashboard/profile/ProfileEdit";
@@ -63,7 +63,7 @@ function App() {
   ) : (
     <>
       <Router>
-        <ThemeChanger />
+        {/* <ThemeChanger /> */}
         <div id="page_wrapper" name="home">
           <div className="row">
             <MainNavigation />
