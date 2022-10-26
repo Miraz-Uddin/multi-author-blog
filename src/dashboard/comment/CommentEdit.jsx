@@ -4,15 +4,15 @@ import { useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/ui/Breadcrumbs";
 import PreLoader from "../../components/ui/PreLoader";
-import { useGetBlogQuery } from "../../features/blog/blogAPI";
-import BlogForm from "./BlogForm";
+import { useGetCommentQuery } from "../../features/comment/commentAPI";
+import CommentForm from "./CommentForm";
 
-export default function BlogEdit() {
+export default function CommentEdit() {
   const { enqueueSnackbar } = useSnackbar();
   const { user } = useSelector((state) => state.auth) || {};
-  const { blogId } = useParams();
+  const { commentId } = useParams();
   let content;
-  const { data: blog, isLoading, isError } = useGetBlogQuery(blogId);
+  const { data: comment, isLoading, isError } = useGetCommentQuery(commentId);
   if (isLoading) content = <PreLoader />;
   if (!isLoading && isError) {
     enqueueSnackbar("Error while Fetching Blog's Data", { variant: "error" });
@@ -23,17 +23,17 @@ export default function BlogEdit() {
     );
   }
   if (!isLoading && !isError) {
-    const { author } = blog?.data?.attributes;
+    const { user: author } = comment?.data?.attributes;
     if (user?.id === author?.data?.id) {
       content = (
-        <BlogForm
-          blogId={blog?.data?.id}
-          blog={blog?.data?.attributes}
+        <CommentForm
+          commentId={comment?.data?.id}
+          comment={comment?.data?.attributes}
           formType={"update"}
         />
       );
     } else {
-      enqueueSnackbar("The Blog is Authored by Someone Else", {
+      enqueueSnackbar("The Comment is Posted by Someone Else", {
         variant: "error",
       });
       content = (
@@ -43,7 +43,6 @@ export default function BlogEdit() {
       );
     }
   }
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -51,8 +50,8 @@ export default function BlogEdit() {
     <>
       <Breadcrumbs
         previousUrl="/dashboard"
-        previousPageName="Dashboard"
-        currentPageName="Blog Edit"
+        previousPageName="Comment"
+        currentPageName="Comment Edit"
       />
       <section className="py_80 bg_secondery full_row">
         <div className="container">
@@ -61,7 +60,7 @@ export default function BlogEdit() {
               <div className="col-12">
                 <div className="replay mt_60 wow animated slideInUp">
                   <h4 className="text-uppercase text-center color_primary mb_30">
-                    Edit Blog
+                    Edit Comment
                   </h4>
                   {content}
                 </div>

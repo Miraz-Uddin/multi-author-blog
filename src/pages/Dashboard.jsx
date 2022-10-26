@@ -75,11 +75,11 @@ export default function Dashboard() {
                   >
                     <span className="d-flex justify-content-between">
                       <span>comments</span>
-                      <Link to={"/"}>
+                      {/* <Link to={"/"}>
                         <span className={`addButton ${styles.addButton}`}>
                           <i className="fa fa-plus"></i>{" "}
                         </span>
-                      </Link>
+                      </Link> */}
                     </span>
                   </span>
                   <span

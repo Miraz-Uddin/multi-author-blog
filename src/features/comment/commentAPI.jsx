@@ -4,7 +4,17 @@ const commentAPI = apiSlice.injectEndpoints({
     getComments: builder.query({
       query: (blogId) =>
         `/comments?filters[blog][id][$eq]=${blogId}&populate[user][fields][0]=id`,
-      providesTags: ["Comment"],
+      providesTags: ["StoreComment", "UpdateComment"],
+    }),
+    getCommentsByAuthor: builder.query({
+      query: (userId) =>
+        `/comments?populate[blog][fields][0]=title&filters[user][id][$eq]=${userId}&filters[blog][id][$null]=false`,
+      providesTags: ["StoreComment", "UpdateComment"],
+    }),
+    getComment: builder.query({
+      query: (commentId) =>
+        `/comments/${commentId}?populate[blog][fields][0]=title&populate[user][fields][0]=email`,
+      providesTags: ["StoreComment", "UpdateComment"],
     }),
     storeComment: builder.mutation({
       query: (data) => ({
@@ -12,9 +22,23 @@ const commentAPI = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Comment"],
+      invalidatesTags: ["StoreComment"],
+    }),
+    updateComment: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/comments/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["UpdateComment"],
     }),
   }),
 });
 
-export const { useGetCommentsQuery, useStoreCommentMutation } = commentAPI;
+export const {
+  useGetCommentsQuery,
+  useGetCommentsByAuthorQuery,
+  useStoreCommentMutation,
+  useGetCommentQuery,
+  useUpdateCommentMutation,
+} = commentAPI;

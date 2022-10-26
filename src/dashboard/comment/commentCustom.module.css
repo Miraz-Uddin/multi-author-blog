@@ -1,0 +1,29 @@
+.dashTable {
+    border-radius: 0;
+    color: #1e283c;
+}
+
+.dashTable:hover {
+    background-color: #fff;
+    color: #1e283c;
+}
+
+.blogTitle {
+    height: 55px;
+    width: 150px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.commentTitle {
+    height: 55px;
+    width: 150px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    cursor: pointer;
+}

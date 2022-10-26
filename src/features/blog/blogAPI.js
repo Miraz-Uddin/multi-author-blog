@@ -18,17 +18,32 @@ const blogAPI = apiSlice.injectEndpoints({
         }
         return mainUrl + query;
       },
-      providesTags: ["Comment", "UpdateBlog"],
+      providesTags: [
+        "StoreComment",
+        "UpdateComment",
+        "StoreBlog",
+        "UpdateBlog",
+      ],
     }),
     getBlog: builder.query({
       query: (blogId) =>
         `/blogs/${blogId}?populate[image][fields][0]=url&populate[author][fields][0]=username&populate[tags][fields][0]=title&populate[comments][fields][0]=message&populate[comments][fields][1]=parentId`,
-      providesTags: ["Comment", "UpdateBlog"],
+      providesTags: [
+        "StoreComment",
+        "UpdateComment",
+        "StoreBlog",
+        "UpdateBlog",
+      ],
     }),
     getBLogsByAuthor: builder.query({
       query: (userId) =>
         `/blogs?[fields][0]=title&[fields][1]=short_description&[fields][2]=publishedAt&populate[image][fields][0]=url&populate[author][fields][0]=username&populate[comments]=*&populate[tags][fields][0]=title&filters[author][id][$eq]=${userId}`,
-      providesTags: ["Comment", "UpdateBlog"],
+      providesTags: [
+        "StoreComment",
+        "UpdateComment",
+        "StoreBlog",
+        "UpdateBlog",
+      ],
     }),
     storeBlog: builder.mutation({
       query: (data) => ({
@@ -36,6 +51,7 @@ const blogAPI = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["StoreBlog"],
     }),
     updateBlog: builder.mutation({
       query: ({ id, data }) => ({
