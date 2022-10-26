@@ -9,7 +9,7 @@ import BlogForm from "./BlogForm";
 
 export default function BlogEdit() {
   const { enqueueSnackbar } = useSnackbar();
-  const { user } = useSelector((state) => state.auth) || {};
+  const { user: auth } = useSelector((state) => state.auth) || {};
   const { blogId } = useParams();
   let content;
   const { data: blog, isLoading, isError } = useGetBlogQuery(blogId);
@@ -24,12 +24,13 @@ export default function BlogEdit() {
   }
   if (!isLoading && !isError) {
     const { author } = blog?.data?.attributes;
-    if (user?.id === author?.data?.id) {
+    if (auth?.id === author?.data?.id) {
       content = (
         <BlogForm
           blogId={blog?.data?.id}
           blog={blog?.data?.attributes}
           formType={"update"}
+          authId={auth?.id}
         />
       );
     } else {

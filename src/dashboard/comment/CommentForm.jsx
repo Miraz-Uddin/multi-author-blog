@@ -12,7 +12,7 @@ export default function CommentForm({ commentId, comment, formType }) {
     parentId: commentParentId,
     user,
     blog,
-  } = comment;
+  } = comment || {};
   const [
     updateComment,
     {
@@ -58,7 +58,7 @@ export default function CommentForm({ commentId, comment, formType }) {
   }, [updatedCommentData, commentUpdateError, navigate, enqueueSnackbar]);
 
   useEffect(() => {
-    setMessage(commentMessage);
+    setMessage(commentMessage ?? "");
   }, [commentMessage]);
 
   return (

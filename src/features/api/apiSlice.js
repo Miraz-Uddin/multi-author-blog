@@ -27,7 +27,9 @@ export const apiSlice = createApi({
     "UpdateComment",
     "StoreBlog",
     "UpdateBlog",
+    "DeleteBlog",
     "UpdateProfile",
+    "DeleteComment",
   ],
   endpoints: (builder) => ({}),
 });

@@ -11,7 +11,7 @@ import {
   useUpdateBlogMutation,
 } from "../../features/blog/blogAPI";
 
-export default function BlogForm({ blog, formType, blogId }) {
+export default function BlogForm({ authId, blog, formType, blogId }) {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -24,8 +24,9 @@ export default function BlogForm({ blog, formType, blogId }) {
     title: blogTitle,
     short_description: blogShortDescription,
     long_description: blogLongDescription,
-  } = blog;
-  const longDescriptionBlock = htmlToDraft(blogLongDescription);
+  } = blog || {};
+  // console.log(blogLongDescription);
+  const longDescriptionBlock = htmlToDraft(blogLongDescription ?? "");
   const longDescriptionState = ContentState.createFromBlockArray(
     longDescriptionBlock.contentBlocks
   );
@@ -59,6 +60,7 @@ export default function BlogForm({ blog, formType, blogId }) {
             title: title,
             short_description: shortDescription,
             long_description: longDescription,
+            author: authId,
           },
         });
       }
@@ -88,10 +90,14 @@ export default function BlogForm({ blog, formType, blogId }) {
       const errorMessage = blogUpdateError?.data?.error?.message;
       enqueueSnackbar(errorMessage, { variant: "error" });
     }
-    if (blogStoredData || blogUpdatedData) {
+    if (blogStoredData) {
+      enqueueSnackbar("Blog Created Successfully", { variant: "success" });
       navigate("/dashboard");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (blogUpdatedData) {
+      enqueueSnackbar("Blog Updated Successfully", { variant: "success" });
+      navigate("/dashboard");
+    }
   }, [
     blogStoredData,
     blogUpdatedData,
@@ -102,9 +108,9 @@ export default function BlogForm({ blog, formType, blogId }) {
   ]);
 
   useEffect(() => {
-    setTitle(blogTitle);
-    setShortDescription(blogShortDescription);
-    setLongDescription(longDescription);
+    setTitle(blogTitle ?? "");
+    setShortDescription(blogShortDescription ?? "");
+    setLongDescription(longDescription ?? "");
     setLongDescriptionEditorState(_longDescriptionEditorState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -113,7 +119,9 @@ export default function BlogForm({ blog, formType, blogId }) {
     <>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="blogTitle">Title</label>
+          <label htmlFor="blogTitle">
+            Title <sup className="text-danger">*</sup>{" "}
+          </label>
           <input
             type="text"
             className="form-control"
@@ -125,7 +133,9 @@ export default function BlogForm({ blog, formType, blogId }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="blogShortDescription">Short Description</label>
+          <label htmlFor="blogShortDescription">
+            Short Description <sup className="text-danger">*</sup>{" "}
+          </label>
           <textarea
             className="form-control"
             id="blogShortDescription"
@@ -138,7 +148,9 @@ export default function BlogForm({ blog, formType, blogId }) {
           ></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="blogLongDescription">Long Description</label>
+          <label htmlFor="blogLongDescription">
+            Long Description <sup className="text-danger">*</sup>{" "}
+          </label>
           <Editor
             id="blogLongDescription"
             editorState={longDescriptionEditorState}

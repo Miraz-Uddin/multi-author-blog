@@ -23,7 +23,9 @@ const blogAPI = apiSlice.injectEndpoints({
         "UpdateComment",
         "StoreBlog",
         "UpdateBlog",
+        "DeleteBlog",
         "UpdateProfile",
+        "DeleteComment",
       ],
     }),
     getBlog: builder.query({
@@ -34,7 +36,9 @@ const blogAPI = apiSlice.injectEndpoints({
         "UpdateComment",
         "StoreBlog",
         "UpdateBlog",
+        "DeleteBlog",
         "UpdateProfile",
+        "DeleteComment",
       ],
     }),
     getBLogsByAuthor: builder.query({
@@ -45,7 +49,9 @@ const blogAPI = apiSlice.injectEndpoints({
         "UpdateComment",
         "StoreBlog",
         "UpdateBlog",
+        "DeleteBlog",
         "UpdateProfile",
+        "DeleteComment",
       ],
     }),
     storeBlog: builder.mutation({
@@ -64,6 +70,13 @@ const blogAPI = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["UpdateBlog"],
     }),
+    deleteBlog: builder.mutation({
+      query: (blogId) => ({
+        url: `/blogs/${blogId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["DeleteBlog"],
+    }),
   }),
 });
 
@@ -74,6 +87,7 @@ export const {
   useGetBLogsByAuthorQuery,
   useUpdateBlogMutation,
   useStoreBlogMutation,
+  useDeleteBlogMutation,
 } = blogAPI;
 
 // {{base_url}}

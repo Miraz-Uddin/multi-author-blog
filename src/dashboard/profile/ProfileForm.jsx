@@ -26,7 +26,7 @@ export default function ProfileForm({ profileId, profile, formType }) {
     phone,
     twitter,
     user,
-  } = profile;
+  } = profile || {};
   const [
     updateProfile,
     {
@@ -78,15 +78,15 @@ export default function ProfileForm({ profileId, profile, formType }) {
   }, [updatedProfileData, profileUpdateError, navigate, enqueueSnackbar]);
 
   useEffect(() => {
-    setProfileFullname(fullname);
+    setProfileFullname(fullname ?? "");
     setProfileDateofbirth(dateofbirth ?? "1980-10-01");
-    setProfilePhone(phone);
-    setProfileBloodgroup(bloodgroup);
-    setProfileFacebook(facebook);
-    setProfileInstagram(instagram);
-    setProfileLinkedin(linkedin);
-    setProfileTwitter(twitter);
-    setProfileAddress(address);
+    setProfilePhone(phone ?? "");
+    setProfileBloodgroup(bloodgroup ?? "");
+    setProfileFacebook(facebook ?? "");
+    setProfileInstagram(instagram ?? "");
+    setProfileLinkedin(linkedin ?? "");
+    setProfileTwitter(twitter ?? "");
+    setProfileAddress(address ?? "");
   }, [
     address,
     bloodgroup,

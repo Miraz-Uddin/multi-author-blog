@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 // import ThemeChanger from "./components/ui/ThemeChanger";
 import { animateScroll as scroll } from "react-scroll";
+import BlogCreate from "./dashboard/blog/BlogCreate";
 import BlogEdit from "./dashboard/blog/BlogEdit";
 import CommentEdit from "./dashboard/comment/CommentEdit";
 import ProfileEdit from "./dashboard/profile/ProfileEdit";
@@ -113,6 +114,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <BlogEdit />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/blogs/create"
+                element={
+                  <PrivateRoute>
+                    <BlogCreate />
                   </PrivateRoute>
                 }
               />

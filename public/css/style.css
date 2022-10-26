@@ -1370,6 +1370,7 @@ ul#menu li a {
 .blog_content {
   padding: 30px 15px;
   display: inline-block;
+  width: 100%;
 }
 
 .blog_title a h5 {
@@ -1757,6 +1758,10 @@ nav ul li.page-item {
 .archives ul li a {
   float: left;
   color: rgb(44, 44, 44);
+}
+
+.recent_post a {
+  display: block;
 }
 
 .recent_post .post_img {

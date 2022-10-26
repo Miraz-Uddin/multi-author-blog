@@ -1,11 +1,23 @@
+import { useSnackbar } from "notistack";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useGetCommentsByAuthorQuery } from "../../features/comment/commentAPI";
+import {
+  useDeleteCommentMutation,
+  useGetCommentsByAuthorQuery,
+} from "../../features/comment/commentAPI";
 import styles from "./commentCustom.module.css";
 
 export default function CommentIndex() {
+  const { enqueueSnackbar } = useSnackbar();
   const { user } = useSelector((state) => state.auth) || {};
+  const [deleteComment] = useDeleteCommentMutation();
+  const handleDeleteComment = (id) => {
+    enqueueSnackbar("Comment Deleted Successfully", {
+      variant: "success",
+    });
+    deleteComment(id);
+  };
   const {
     data: comments,
     isLoading,
@@ -51,12 +63,12 @@ export default function CommentIndex() {
                 >
                   Edit
                 </Link>
-                <Link
-                  to={`/dashboard/comments/${comment?.id}/delete`}
+                <button
+                  onClick={() => handleDeleteComment(comment?.id)}
                   className="btn btn-danger"
                 >
                   Delete
-                </Link>
+                </button>
               </div>
             </td>
           </tr>

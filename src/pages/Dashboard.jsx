@@ -57,7 +57,7 @@ export default function Dashboard() {
                   >
                     <span className="d-flex justify-content-between">
                       <span>blogs</span>
-                      <Link to={"/"}>
+                      <Link to={"/dashboard/blogs/create"}>
                         <span className={`addButton ${styles.addButton}`}>
                           <i className="fa fa-plus"></i>{" "}
                         </span>
