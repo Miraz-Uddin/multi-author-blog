@@ -1,13 +1,22 @@
+import moment from "moment/moment";
 import React from "react";
+import { Link } from "react-router-dom";
 import PreLoader from "../../components/ui/PreLoader";
-import Info from "./Info";
-
 import styles from "./profileCustom.module.css";
+import ProfileInfo from "./ProfileInfo";
 
-export default function ProfileIndex({ profile }) {
+export default function ProfileIndex({ profile, profileId }) {
   if (profile) {
-    const { user, avatar, address, facebook, instagram, twitter, linkedin } =
-      profile || {};
+    const {
+      user,
+      avatar,
+      address,
+      facebook,
+      instagram,
+      twitter,
+      linkedin,
+      dateofbirth,
+    } = profile || {};
     let authorImage = window.origin + "/images/author/user.jpg";
     const imageURL = avatar?.data?.attributes?.url;
     authorImage =
@@ -21,11 +30,18 @@ export default function ProfileIndex({ profile }) {
         <div className="col-sm-12 col-md-8">
           <div className="card">
             <div className="card-body">
-              <Info label="Email" value={user?.data?.attributes?.email} />
-              <Info label="Facebook" value={facebook ?? "N/A"} />
-              <Info label="Twitter" value={twitter ?? "N/A"} />
-              <Info label="Linkedin" value={linkedin ?? "N/A"} />
-              <Info label="Instagram" value={instagram ?? "N/A"} />
+              <ProfileInfo
+                label="Email"
+                value={user?.data?.attributes?.email}
+              />
+              <ProfileInfo
+                label="Birthday"
+                value={moment(dateofbirth).format("Do MMMM,  YYYY")}
+              />
+              <ProfileInfo label="Facebook" value={facebook ?? "N/A"} />
+              <ProfileInfo label="Twitter" value={twitter ?? "N/A"} />
+              <ProfileInfo label="Linkedin" value={linkedin ?? "N/A"} />
+              <ProfileInfo label="Instagram" value={instagram ?? "N/A"} />
               <div className="mb-2">
                 <label className={`${styles.textareaLabel}`}>Address:</label>
                 <textarea
@@ -35,6 +51,14 @@ export default function ProfileIndex({ profile }) {
                 ></textarea>
               </div>
             </div>
+            <span className={`${styles.profileInfoEdit}`}>
+              <Link
+                to={`/dashboard/profile/${profileId}/edit`}
+                className={`${styles.profileInfoEditBtn} btn btn-info`}
+              >
+                Edit
+              </Link>
+            </span>
           </div>
         </div>
         <div className="col-sm-12 col-md-4">

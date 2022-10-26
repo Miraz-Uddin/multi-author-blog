@@ -4,18 +4,24 @@ import { useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/ui/Breadcrumbs";
 import PreLoader from "../../components/ui/PreLoader";
-import { useGetCommentQuery } from "../../features/comment/commentAPI";
-import CommentForm from "./CommentForm";
+import { useGetProfileByIdQuery } from "../../features/profile/profileAPI";
+import ProfileForm from "./ProfileForm";
 
-export default function CommentEdit() {
+export default function ProfileEdit() {
   const { enqueueSnackbar } = useSnackbar();
-  const { user } = useSelector((state) => state.auth) || {};
-  const { commentId } = useParams();
+  const { user: auth } = useSelector((state) => state.auth) || {};
+  const { profileId } = useParams();
   let content;
-  const { data: comment, isLoading, isError } = useGetCommentQuery(commentId);
+  const {
+    data: profile,
+    isLoading,
+    isError,
+  } = useGetProfileByIdQuery(profileId);
   if (isLoading) content = <PreLoader />;
   if (!isLoading && isError) {
-    enqueueSnackbar("Error while Fetching Blog's Data", { variant: "error" });
+    enqueueSnackbar("Error while Fetching Profile's Info", {
+      variant: "error",
+    });
     content = (
       <>
         <Navigate to="/dashboard" />
@@ -23,17 +29,17 @@ export default function CommentEdit() {
     );
   }
   if (!isLoading && !isError) {
-    const { user: author } = comment?.data?.attributes;
-    if (user?.id === author?.data?.id) {
+    const { user } = profile?.data?.attributes;
+    if (auth?.id === user?.data?.id) {
       content = (
-        <CommentForm
-          commentId={comment?.data?.id}
-          comment={comment?.data?.attributes}
+        <ProfileForm
+          profileId={profile?.data?.id}
+          profile={profile?.data?.attributes}
           formType={"update"}
         />
       );
     } else {
-      enqueueSnackbar("The Comment is Posted by Someone Else", {
+      enqueueSnackbar("This is Not your Profile", {
         variant: "error",
       });
       content = (
@@ -51,7 +57,7 @@ export default function CommentEdit() {
       <Breadcrumbs
         previousUrl="/dashboard"
         previousPageName="Dashboard"
-        currentPageName="Comment Edit"
+        currentPageName="Profile Edit"
       />
       <section className="py_80 bg_secondery full_row">
         <div className="container">
@@ -60,7 +66,7 @@ export default function CommentEdit() {
               <div className="col-12">
                 <div className="replay mt_60 wow animated slideInUp">
                   <h4 className="text-uppercase text-center color_primary mb_30">
-                    Edit Comment
+                    Edit Profile
                   </h4>
                   {content}
                 </div>

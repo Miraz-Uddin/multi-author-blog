@@ -27,3 +27,15 @@
     padding-left: 10px;
     min-width: 90px
 }
+
+.profileInfoEdit {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+}
+
+.profileInfoEditBtn {
+    padding: 5px 19px;
+    color: #fff;
+}

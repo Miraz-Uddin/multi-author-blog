@@ -23,6 +23,7 @@ const blogAPI = apiSlice.injectEndpoints({
         "UpdateComment",
         "StoreBlog",
         "UpdateBlog",
+        "UpdateProfile",
       ],
     }),
     getBlog: builder.query({
@@ -33,6 +34,7 @@ const blogAPI = apiSlice.injectEndpoints({
         "UpdateComment",
         "StoreBlog",
         "UpdateBlog",
+        "UpdateProfile",
       ],
     }),
     getBLogsByAuthor: builder.query({
@@ -43,6 +45,7 @@ const blogAPI = apiSlice.injectEndpoints({
         "UpdateComment",
         "StoreBlog",
         "UpdateBlog",
+        "UpdateProfile",
       ],
     }),
     storeBlog: builder.mutation({

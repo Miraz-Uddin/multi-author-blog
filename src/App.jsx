@@ -12,6 +12,7 @@ import PublicRoute from "./components/PublicRoute";
 import ThemeChanger from "./components/ui/ThemeChanger";
 import BlogEdit from "./dashboard/blog/BlogEdit";
 import CommentEdit from "./dashboard/comment/CommentEdit";
+import ProfileEdit from "./dashboard/profile/ProfileEdit";
 import { useGetHeaderInfoQuery } from "./features/head/headAPI";
 import useAuthCheck from "./hooks/useAuthCheck";
 import Blogs from "./pages/Blogs";
@@ -101,6 +102,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <CommentEdit />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/profile/:profileId/edit"
+                element={
+                  <PrivateRoute>
+                    <ProfileEdit />
                   </PrivateRoute>
                 }
               />

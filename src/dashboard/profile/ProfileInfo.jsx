@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./profileCustom.module.css";
 
-export default function Info({ label, value }) {
+export default function ProfileInfo({ label, value }) {
   return (
     <div className="mb-2">
       <label className={`${styles.label}`}>{label}:</label>

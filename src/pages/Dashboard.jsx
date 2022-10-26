@@ -93,11 +93,11 @@ export default function Dashboard() {
                   >
                     <span className="d-flex justify-content-between">
                       <span>profile</span>
-                      <Link to={"/"}>
+                      {/* <Link to={"/"}>
                         <span className={`addButton ${styles.addButton}`}>
                           <i className="fa fa-plus"></i>{" "}
                         </span>
-                      </Link>
+                      </Link> */}
                     </span>
                   </span>
                   <span
@@ -126,7 +126,10 @@ export default function Dashboard() {
                     role="tabpanel"
                     aria-labelledby="v-pills-profile-tab"
                   >
-                    <ProfileIndex profile={profile?.data?.[0]?.attributes} />
+                    <ProfileIndex
+                      profileId={profile?.data?.[0]?.id}
+                      profile={profile?.data?.[0]?.attributes}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
