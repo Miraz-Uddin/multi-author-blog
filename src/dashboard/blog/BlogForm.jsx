@@ -198,7 +198,7 @@ export default function BlogForm({ author, blog, formType, blogId }) {
           <div className="col-12">
             <div className="form-group">
               <label htmlFor="blogTitle">
-                Title <sup className="text-danger">*</sup>{" "}
+                <strong>Title</strong> <sup className="text-danger">*</sup>{" "}
               </label>
               <input
                 type="text"
@@ -255,7 +255,8 @@ export default function BlogForm({ author, blog, formType, blogId }) {
           <div className="col-sm-12 col-md-6">
             <div className="form-group">
               <label htmlFor="blogShortDescription">
-                Short Description <sup className="text-danger">*</sup>{" "}
+                <strong>Short Description</strong>{" "}
+                <sup className="text-danger">*</sup>{" "}
               </label>
               <textarea
                 className="form-control"
@@ -274,7 +275,8 @@ export default function BlogForm({ author, blog, formType, blogId }) {
           <div className="col-12">
             <div className="form-group">
               <label htmlFor="blogLongDescription">
-                Long Description <sup className="text-danger">*</sup>{" "}
+                <strong>Long Description</strong>{" "}
+                <sup className="text-danger">*</sup>{" "}
               </label>
               <Editor
                 id="blogLongDescription"

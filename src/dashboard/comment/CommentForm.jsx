@@ -65,7 +65,9 @@ export default function CommentForm({ commentId, comment, formType }) {
     <>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="commentMessage">Comment Message</label>
+          <label htmlFor="commentMessage">
+            <strong>Comment Message</strong>
+          </label>
           <input
             type="text"
             className="form-control"
