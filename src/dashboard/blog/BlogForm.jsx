@@ -12,10 +12,14 @@ import {
 } from "../../features/blog/blogAPI";
 import checkImageFileType from "../../utils/checkImageFileType";
 import getSerializeData from "../../utils/getSerializeData";
+import BlogCreateTags from "./BlogCreateTags";
+import styles from "./blogCustom.module.css";
+import BlogUpdateTags from "./BlogUpdateTags";
 
 export default function BlogForm({ author, blog, formType, blogId }) {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  const [tagsResponse, setTagsResponse] = useState("");
   const [title, setTitle] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [longDescription, setLongDescription] = useState("");
@@ -28,6 +32,7 @@ export default function BlogForm({ author, blog, formType, blogId }) {
     short_description: blogShortDescription,
     long_description: blogLongDescription,
     image: blogImage,
+    tags,
   } = blog || {};
   const longDescriptionBlock = htmlToDraft(blogLongDescription ?? "");
   const longDescriptionState = ContentState.createFromBlockArray(
@@ -69,12 +74,22 @@ export default function BlogForm({ author, blog, formType, blogId }) {
     ) {
       enqueueSnackbar("Please fill all required forms", { variant: "error" });
     } else {
+      let foundTags = [];
+      if (!tagsResponse.every((item) => item.isChecked === false)) {
+        tagsResponse
+          .filter((tag) => tag.isChecked)
+          .map((tag) => {
+            foundTags.push(tag.id);
+            return tag;
+          });
+      }
       const othersInfo = {
         title,
         short_description: shortDescription,
         long_description: longDescription
           ? longDescription
           : blogLongDescription,
+        tags: foundTags,
       };
       if (formType === "update") {
         if (image?.data === null) {
@@ -196,6 +211,24 @@ export default function BlogForm({ author, blog, formType, blogId }) {
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-12">
+            <label htmlFor="blogTitle">
+              <strong>Tags</strong>
+            </label>
+            <div className="form-control">
+              {formType === "update" && (
+                <BlogUpdateTags
+                  setTagsResponse={setTagsResponse}
+                  tags={tags?.data}
+                />
+              )}
+              {formType === "store" && (
+                <BlogCreateTags setTagsResponse={setTagsResponse} />
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
             <div className="form-group">
               <label htmlFor="blogTitle">
                 <strong>Title</strong> <sup className="text-danger">*</sup>{" "}
@@ -220,16 +253,12 @@ export default function BlogForm({ author, blog, formType, blogId }) {
                   id="imagePreview"
                   style={{
                     margin: "auto",
-                    width: "12.8rem",
-                    height: "14.3rem",
+                    maxWidth: "22rem",
+                    height: "13.4rem",
                   }}
                 >
                   <figure className="figure">
-                    <img
-                      src={blogPreviewImage}
-                      className="figure-img img-fluid rounded"
-                      alt="preview author"
-                    />
+                    <img src={blogPreviewImage} alt="preview author" />
                   </figure>
                 </div>
                 <div>
@@ -283,7 +312,7 @@ export default function BlogForm({ author, blog, formType, blogId }) {
                 editorState={longDescriptionEditorState}
                 toolbarClassName="toolbarClassName"
                 wrapperClassName="wrapperClassName"
-                editorClassName="form-control"
+                editorClassName={`${styles.longDescription} form-control`}
                 onEditorStateChange={(newState) => {
                   setLongDescriptionEditorState(newState);
                   setLongDescription(

@@ -23,3 +23,16 @@
     overflow: hidden;
     cursor: pointer;
 }
+
+.longDescription {
+    height: 16rem;
+}
+
+.checkBox {
+    vertical-align: text-bottom;
+}
+
+.formLabel {
+    vertical-align: text-top;
+    padding: 2px 3px;
+}

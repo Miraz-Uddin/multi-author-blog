@@ -55,29 +55,50 @@ export default function SingleBlogDetails({ blog }) {
             <div className="socal_media_2 d-inline-block">
               <ul>
                 <li>
-                  <span style={{ cursor: "pointer" }}>
+                  <a
+                    href="https://www.facebook.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <i className="fa fa-facebook" aria-hidden="true"></i>
-                  </span>
+                  </a>
                 </li>
                 <li>
-                  <span style={{ cursor: "pointer" }}>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <i className="fa fa-twitter" aria-hidden="true"></i>
-                  </span>
+                  </a>
                 </li>
                 <li>
-                  <span style={{ cursor: "pointer" }}>
-                    <i className="fa fa-google-plus" aria-hidden="true"></i>
-                  </span>
+                  <a
+                    href="https://web.whatsapp.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fa fa-whatsapp" aria-hidden="true"></i>
+                  </a>
                 </li>
                 <li>
-                  <span style={{ cursor: "pointer" }}>
+                  <a
+                    href="https://web.skype.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className="fa fa-skype" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com">
                     <i className="fa fa-linkedin" aria-hidden="true"></i>
-                  </span>
+                  </a>
                 </li>
                 <li>
-                  <span style={{ cursor: "pointer" }}>
+                  <a href="https://www.instagram.com">
                     <i className="fa fa-instagram" aria-hidden="true"></i>
-                  </span>
+                  </a>
                 </li>
               </ul>
             </div>
