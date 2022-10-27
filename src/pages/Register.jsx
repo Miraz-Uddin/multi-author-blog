@@ -138,7 +138,7 @@ export default function Register() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                       />
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                       <p className="terms">
                         <input
                           id="agree"
@@ -155,7 +155,7 @@ export default function Register() {
                           <span> Terms of Use</span>
                         </label>
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="col-md-12 col-lg-12 col-xl-6">
@@ -227,7 +227,25 @@ export default function Register() {
                     </div>
                   </div>
                 </div>
-                <div className="col-4 m-auto">
+                <div className="col-sm-12 col-md-5 m-auto">
+                  <div className="form-group">
+                    <p className="terms">
+                      <input
+                        id="agree"
+                        name="agree"
+                        type="checkbox"
+                        checked={agreed}
+                        onChange={(e) => setAgreed(e.target.checked)}
+                      />
+                      <label
+                        htmlFor="agree"
+                        className="ml-2 block text-sm text-gray-900"
+                      >
+                        I've read & agree to all{" "}
+                        <span> terms & conditions </span>
+                      </label>
+                    </p>
+                  </div>
                   <button
                     type="submit"
                     className="auth-btn"

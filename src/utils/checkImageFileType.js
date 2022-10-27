@@ -15,10 +15,9 @@ export default function checkImageFileType(fileInput, placeholder) {
     if (fileInput.files && fileInput.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
-        document.getElementById(placeholder).innerHTML =
-          '<figure className="figure"><img className="custom-avatar wow" src="' +
-          e.target.result +
-          '"/></figure>';
+        document.getElementById(
+          placeholder
+        ).innerHTML = `<figure className="figure"><img style="width: auto;height: 14.3rem;display: block;margin: auto" className="custom-avatar" src="${e.target.result}"/></figure>`;
       };
       reader.readAsDataURL(fileInput.files[0]);
       return true;

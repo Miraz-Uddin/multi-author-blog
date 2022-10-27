@@ -106,8 +106,8 @@ p {
 }
 
 img {
-  width: auto;
-  max-height: 14.3rem;
+  width: 100%;
+  height: auto;
 }
 
 ul {
