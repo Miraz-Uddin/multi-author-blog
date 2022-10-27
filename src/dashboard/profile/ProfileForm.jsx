@@ -114,7 +114,6 @@ export default function ProfileForm({ profileId, profile, formType }) {
           });
         } else if (profileAvatar?.data?.id) {
           // if not updated image, but image existed before
-          console.log("not updated image, but image existed before");
           updateProfile({
             id: profileId,
             data: {

@@ -5,7 +5,7 @@ import BlogForm from "./BlogForm";
 
 export default function BlogCreate() {
   const { user: auth } = useSelector((state) => state.auth) || {};
-  const content = <BlogForm authId={auth?.id} formType={"store"} />;
+  const content = <BlogForm author={auth?.id} formType={"store"} />;
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

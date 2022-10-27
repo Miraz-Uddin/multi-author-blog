@@ -30,7 +30,6 @@ export default function BlogEdit() {
           blogId={blog?.data?.id}
           blog={blog?.data?.attributes}
           formType={"update"}
-          authId={auth?.id}
         />
       );
     } else {
