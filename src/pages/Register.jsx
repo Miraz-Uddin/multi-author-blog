@@ -178,8 +178,8 @@ export default function Register() {
                       <figure className="figure">
                         <img
                           src={window.origin + "/images/author/user.jpg"}
-                          className="figure-img img-fluid rounded"
                           alt="preview author"
+                          className="custom-avatar"
                         />
                       </figure>
                     </div>

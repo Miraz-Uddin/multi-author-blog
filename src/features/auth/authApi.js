@@ -47,6 +47,7 @@ export const authAPI = apiSlice.injectEndpoints({
             const profileData = getSerializeData(
               {
                 fullname,
+                dateofbirth: "1990-01-01",
                 user,
               },
               "avatar",
@@ -60,6 +61,7 @@ export const authAPI = apiSlice.injectEndpoints({
               profileAPI.endpoints.storeProfile.initiate({
                 data: {
                   fullname,
+                  dateofbirth: "1990-01-01",
                   user,
                 },
               })

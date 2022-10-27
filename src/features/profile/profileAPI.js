@@ -6,6 +6,7 @@ export const profileAPI = apiSlice.injectEndpoints({
       query: (userId) =>
         `/profiles?filters[user][id][$eq]=${userId}&populate[avatar][fields][0]=url&populate[user][fields][0]=email`,
       providesTags: [
+        "StoreProfile",
         "UpdateProfile",
         "StoreComment",
         "UpdateComment",
@@ -16,8 +17,10 @@ export const profileAPI = apiSlice.injectEndpoints({
       ],
     }),
     getProfileById: builder.query({
-      query: (profileId) => `/profiles/${profileId}?populate[user]=*`,
+      query: (profileId) =>
+        `/profiles/${profileId}?populate[user]=*&populate[avatar]=*`,
       providesTags: [
+        "StoreProfile",
         "UpdateProfile",
         "StoreComment",
         "UpdateComment",
@@ -33,6 +36,7 @@ export const profileAPI = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["StoreProfile"],
     }),
     updateProfile: builder.mutation({
       query: ({ id, data }) => ({

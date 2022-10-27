@@ -106,8 +106,8 @@ p {
 }
 
 img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  max-height: 14.3rem;
 }
 
 ul {
@@ -2858,6 +2858,13 @@ label.radios {
   opacity: 1;
   transform: scaleX(1);
   transform: translateX(-50%);
+}
+
+.custom-avatar {
+  width: auto !important;
+  max-height: 14.3rem !important;
+  display: block !important;
+  margin: auto !important;
 }
 
 

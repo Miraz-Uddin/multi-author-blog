@@ -5,6 +5,7 @@ const commentAPI = apiSlice.injectEndpoints({
       query: (blogId) =>
         `/comments?filters[blog][id][$eq]=${blogId}&populate[user][fields][0]=id`,
       providesTags: [
+        "StoreProfile",
         "UpdateProfile",
         "StoreComment",
         "UpdateComment",
@@ -18,6 +19,7 @@ const commentAPI = apiSlice.injectEndpoints({
       query: (userId) =>
         `/comments?populate[blog][fields][0]=title&filters[user][id][$eq]=${userId}&filters[blog][id][$null]=false`,
       providesTags: [
+        "StoreProfile",
         "UpdateProfile",
         "StoreComment",
         "UpdateComment",
@@ -31,6 +33,7 @@ const commentAPI = apiSlice.injectEndpoints({
       query: (commentId) =>
         `/comments/${commentId}?populate[blog][fields][0]=title&populate[user][fields][0]=email`,
       providesTags: [
+        "StoreProfile",
         "UpdateProfile",
         "StoreComment",
         "UpdateComment",

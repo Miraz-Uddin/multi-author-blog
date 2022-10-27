@@ -28,6 +28,7 @@ export const apiSlice = createApi({
     "StoreBlog",
     "UpdateBlog",
     "DeleteBlog",
+    "StoreProfile",
     "UpdateProfile",
     "DeleteComment",
   ],
