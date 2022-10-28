@@ -15,6 +15,7 @@ import BlogCreate from "./dashboard/blog/BlogCreate";
 import BlogEdit from "./dashboard/blog/BlogEdit";
 import CommentEdit from "./dashboard/comment/CommentEdit";
 import ProfileEdit from "./dashboard/profile/ProfileEdit";
+import TagCreate from "./dashboard/tag/TagCreate";
 import { useGetHeaderInfoQuery } from "./features/head/headAPI";
 import useAuthCheck from "./hooks/useAuthCheck";
 import Blogs from "./pages/Blogs";
@@ -122,6 +123,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <BlogCreate />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/tags/create"
+                element={
+                  <PrivateRoute>
+                    <TagCreate />
                   </PrivateRoute>
                 }
               />

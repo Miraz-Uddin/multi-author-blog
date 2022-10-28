@@ -5,6 +5,7 @@ import Breadcrumbs from "../components/ui/Breadcrumbs";
 import BlogIndex from "../dashboard/blog/BlogIndex";
 import CommentIndex from "../dashboard/comment/CommentIndex";
 import ProfileIndex from "../dashboard/profile/ProfileIndex";
+import TagIndex from "../dashboard/tag/TagIndex";
 import { userLoggedOut } from "../features/auth/authSlice";
 import { useGetProfileQuery } from "../features/profile/profileAPI";
 import styles from "./custom.module.css";
@@ -39,7 +40,7 @@ export default function Dashboard() {
         <div className="container">
           <div className="my_skill" id="authentication">
             <div className="row">
-              <div className="col-md-2">
+              <div className="col-sm-12 col-md-5 col-lg-3">
                 <div
                   className={`nav flex-column nav-pills ${styles.sidebar}`}
                   id="v-pills-tab"
@@ -47,7 +48,7 @@ export default function Dashboard() {
                   aria-orientation="vertical"
                 >
                   <span
-                    className={`${styles.button} nav-link active w-75 `}
+                    className={`${styles.button} nav-link active w-75`}
                     id="v-pills-blog-tab"
                     data-toggle="pill"
                     href="#v-pills-blog"
@@ -65,7 +66,25 @@ export default function Dashboard() {
                     </span>
                   </span>
                   <span
-                    className={`${styles.button} nav-link w-75 `}
+                    className={`${styles.button} nav-link w-75`}
+                    id="v-pills-tag-tab"
+                    data-toggle="pill"
+                    href="#v-pills-tag"
+                    role="tab"
+                    aria-controls="v-pills-tag"
+                    aria-selected="false"
+                  >
+                    <span className="d-flex justify-content-between">
+                      <span>tags</span>
+                      <Link to={"/dashboard/tags/create"}>
+                        <span className={`addButton ${styles.addButton}`}>
+                          <i className="fa fa-plus"></i>{" "}
+                        </span>
+                      </Link>
+                    </span>
+                  </span>
+                  <span
+                    className={`${styles.button} nav-link w-75`}
                     id="v-pills-comment-tab"
                     data-toggle="pill"
                     href="#v-pills-comment"
@@ -110,7 +129,7 @@ export default function Dashboard() {
                   </span>
                 </div>
               </div>
-              <div className="col-md-10">
+              <div className="col-sm-12 col-md-7 col-lg-9">
                 <div className="tab-content" id="v-pills-tabContent">
                   <div
                     className="tab-pane fade show active"
@@ -119,6 +138,14 @@ export default function Dashboard() {
                     aria-labelledby="v-pills-blog-tab"
                   >
                     <BlogIndex />
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="v-pills-tag"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-tag-tab"
+                  >
+                    <TagIndex />
                   </div>
                   <div
                     className="tab-pane fade"

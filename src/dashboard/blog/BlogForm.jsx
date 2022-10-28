@@ -55,7 +55,11 @@ export default function BlogForm({ author, blog, formType, blogId }) {
   ] = useUpdateBlogMutation();
 
   const imageUpload = (e) => {
-    const isMimeTypeOk = checkImageFileType(e.target, "imagePreview");
+    const isMimeTypeOk = checkImageFileType(
+      e.target,
+      "imagePreview",
+      "/images/blog/03.jpg"
+    );
     if (isMimeTypeOk) {
       setImage(e.target.files[0]);
     } else {
@@ -92,24 +96,14 @@ export default function BlogForm({ author, blog, formType, blogId }) {
         tags: foundTags,
       };
       if (formType === "update") {
-        if (image?.data === null) {
-          // Image doesnot exist at all and not updated too
+        if (image?.data === null || image?.data?.id) {
+          // Image doesn't exist before OR Image existed before
+          // And Not updated too
           updateBlog({
             id: blogId,
             data: {
               data: {
                 ...othersInfo,
-              },
-            },
-          });
-        } else if (image?.data?.id) {
-          // if not updated image, but image existed before
-          updateBlog({
-            id: blogId,
-            data: {
-              data: {
-                ...othersInfo,
-                image,
               },
             },
           });
@@ -128,25 +122,8 @@ export default function BlogForm({ author, blog, formType, blogId }) {
         }
       }
       if (formType === "store") {
-        if (image?.data === null) {
-          // Image doesnot exist at all and not updated too
-          storeBlog({
-            data: {
-              ...othersInfo,
-              author,
-            },
-          });
-        } else if (image?.data?.id) {
-          // if not updated image, but image existed before
-          storeBlog({
-            data: {
-              ...othersInfo,
-              author,
-              image,
-            },
-          });
-        } else {
-          // if updated image, and (image existed before or doesnot exist at all)
+        if (image) {
+          // if updated image
           storeBlog(
             getSerializeData(
               {
@@ -157,19 +134,29 @@ export default function BlogForm({ author, blog, formType, blogId }) {
               image
             )
           );
+        } else {
+          // Image doesnot exist at all and not updated too
+          storeBlog({
+            data: {
+              ...othersInfo,
+              author,
+            },
+          });
         }
       }
     }
   };
 
   useEffect(() => {
-    if (blogStoreError?.data) {
+    if (blogStoreError) {
       const errorMessage = blogStoreError?.data?.error?.message;
-      enqueueSnackbar(errorMessage, { variant: "error" });
+      console.log(errorMessage);
+      enqueueSnackbar("New Blog Can not be Created", { variant: "error" });
     }
-    if (blogUpdateError?.data) {
+    if (blogUpdateError) {
       const errorMessage = blogUpdateError?.data?.error?.message;
-      enqueueSnackbar(errorMessage, { variant: "error" });
+      console.log(errorMessage);
+      enqueueSnackbar("Blog Can not be Updated", { variant: "error" });
     }
     if (blogStoredData) {
       enqueueSnackbar("Blog Created Successfully", { variant: "success" });
@@ -177,7 +164,6 @@ export default function BlogForm({ author, blog, formType, blogId }) {
     }
     if (blogUpdatedData) {
       enqueueSnackbar("Blog Updated Successfully", { variant: "success" });
-      navigate("/dashboard");
     }
   }, [
     blogStoredData,

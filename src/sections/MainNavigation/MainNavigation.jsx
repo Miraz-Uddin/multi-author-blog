@@ -49,10 +49,13 @@ export default function MainNavigation() {
       const el = document.querySelectorAll(".nav-link");
       const arr = Array.prototype.slice.call(el);
       arr.map((el) => {
-        if (e.target.innerHTML === el.innerHTML) {
+        if ("Home" === el.innerHTML) {
           el.classList.add("active");
+        }
+        if (e.target.innerHTML === el.innerHTML) {
+          // el.classList.add("active");
         } else {
-          el.classList.remove("active");
+          // el.classList.remove("active");
         }
         return el;
       });
@@ -61,9 +64,9 @@ export default function MainNavigation() {
       const arr = Array.prototype.slice.call(el);
       arr.map((el) => {
         if (e.target.innerHTML === el.innerHTML) {
-          el.classList.add("active");
+          // el.classList.add("active");
         } else {
-          el.classList.remove("active");
+          // el.classList.remove("active");
         }
         return el;
       });
@@ -77,6 +80,7 @@ export default function MainNavigation() {
   };
 
   const checkLoggedIn = () => {
+    scroll.scrollToTop();
     if (!user) {
       enqueueSnackbar("Please Log in to access", { variant: "info" });
       const el = document.querySelectorAll(".nav-link.active");
@@ -113,9 +117,9 @@ export default function MainNavigation() {
           className="navbar navbar-expand-lg navbar-light w-100"
         >
           <ReactScroll
-            activeClass="active"
+            // activeClass="active"
             to="home"
-            spy={true}
+            spy={false}
             smooth={true}
             offset={-72}
             duration={500}
@@ -144,12 +148,13 @@ export default function MainNavigation() {
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
                     <ReactScroll
+                      // activeClass="active"
                       to={"homes"}
-                      spy={true}
+                      spy={false}
                       smooth={true}
                       offset={0}
                       duration={500}
-                      className="nav-link"
+                      className="nav-link active"
                       onClick={clickedHome}
                     >
                       Home
@@ -157,9 +162,9 @@ export default function MainNavigation() {
                   </li>
                   <li className="nav-item">
                     <ReactScroll
-                      activeClass="active"
+                      // activeClass="active"
                       to="naviagate-to-about"
-                      spy={true}
+                      spy={false}
                       smooth={true}
                       offset={0}
                       duration={500}
@@ -171,9 +176,9 @@ export default function MainNavigation() {
                   </li>
                   <li className="nav-item">
                     <ReactScroll
-                      activeClass="active"
+                      // activeClass="active"
                       to="naviagate-to-skill"
-                      spy={true}
+                      spy={false}
                       smooth={true}
                       offset={0}
                       duration={500}
@@ -185,9 +190,9 @@ export default function MainNavigation() {
                   </li>
                   <li className="nav-item">
                     <ReactScroll
-                      activeClass="active"
+                      // activeClass="active"
                       to="naviagate-to-services"
-                      spy={true}
+                      spy={false}
                       smooth={true}
                       offset={0}
                       duration={500}
@@ -199,9 +204,9 @@ export default function MainNavigation() {
                   </li>
                   <li className="nav-item port-hide">
                     <ReactScroll
-                      activeClass="active"
+                      // activeClass="active"
                       to="naviagate-to-portfolio"
-                      spy={true}
+                      spy={false}
                       smooth={true}
                       offset={0}
                       duration={500}
@@ -213,9 +218,9 @@ export default function MainNavigation() {
                   </li>
                   <li className="nav-item">
                     <ReactScroll
-                      activeClass="active"
+                      // activeClass="active"
                       to="naviagate-to-testimonial"
-                      spy={true}
+                      spy={false}
                       smooth={true}
                       offset={0}
                       duration={500}
@@ -227,9 +232,9 @@ export default function MainNavigation() {
                   </li>
                   <li className="nav-item">
                     <ReactScroll
-                      activeClass="active"
+                      // activeClass="active"
                       to="naviagate-to-blog"
-                      spy={true}
+                      spy={false}
                       smooth={true}
                       offset={0}
                       duration={500}
@@ -241,11 +246,11 @@ export default function MainNavigation() {
                   </li>
                   <li className="nav-item">
                     <ReactScroll
-                      activeClass="active"
+                      // activeClass="active"
                       to="naviagate-to-contact"
-                      spy={true}
+                      spy={false}
                       smooth={true}
-                      offset={0}
+                      offset={100}
                       duration={500}
                       className="nav-link"
                       onClick={goToHomeAndScroll}

@@ -1,0 +1,39 @@
+.dashTable {
+    border-radius: 0;
+    color: #1e283c;
+}
+
+.dashTable:hover {
+    background-color: #fff;
+    color: #1e283c;
+}
+
+.tagTitle {
+    height: 32px;
+    width: 300px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.checkBox {
+    vertical-align: text-bottom;
+}
+
+.formLabel {
+    vertical-align: text-top;
+    padding: 2px 3px;
+}
+
+.submitTagBtn {
+    color: #fff;
+    background: rgb(30, 40, 60);
+    border: 2px solid rgb(30, 40, 60);
+}
+
+.tagEditField {
+    border: 2px solid rgb(30, 40, 60);
+    width: 70%;
+}

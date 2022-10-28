@@ -27,7 +27,7 @@ export default function ProfileIndex({ profile, profileId }) {
         : imageURL;
     return (
       <div className="row">
-        <div className="col-sm-12 col-md-8">
+        <div className="col-sm-12 col-md-12 col-lg-7">
           <div className="card">
             <div className="card-body">
               <ProfileInfo
@@ -61,7 +61,7 @@ export default function ProfileIndex({ profile, profileId }) {
             </span>
           </div>
         </div>
-        <div className="col-sm-12 col-md-4">
+        <div className="col-sm-12 col-md-12 col-lg-5">
           <div className="card">
             <img className="card-img-top" src={authorImage} alt="Cardcap" />
           </div>
