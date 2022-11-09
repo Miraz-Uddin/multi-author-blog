@@ -2862,7 +2862,9 @@ label.radios {
 
 .custom-avatar {
   width: auto !important;
+  height: auto !important;
   max-height: 14.3rem !important;
+  max-width: 15rem !important;
   display: block !important;
   margin: auto !important;
 }
