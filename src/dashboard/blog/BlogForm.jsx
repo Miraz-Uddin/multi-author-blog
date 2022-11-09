@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useNavigate } from "react-router-dom";
+import PreLoader from "../../components/ui/PreLoader";
 import {
   useStoreBlogMutation,
   useUpdateBlogMutation,
@@ -194,144 +195,152 @@ export default function BlogForm({ author, blog, formType, blogId }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col-12">
-            <label htmlFor="blogTitle">
-              <strong>Tags</strong>
-            </label>
-            <div className="form-control">
-              {formType === "update" && (
-                <BlogUpdateTags
-                  setTagsResponse={setTagsResponse}
-                  tags={tags?.data}
-                />
-              )}
-              {formType === "store" && (
-                <BlogCreateTags setTagsResponse={setTagsResponse} />
-              )}
-            </div>
-          </div>
+      {blogStoring ? (
+        <div style={{ height: "100vh" }}>
+          <PreLoader />
         </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="form-group">
-              <label htmlFor="blogTitle">
-                <strong>Title</strong> <sup className="text-danger">*</sup>{" "}
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="blogTitle"
-                name="title"
-                value={title}
-                placeholder="Enter a Title ..."
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12 col-md-6">
-            <div className="form-group">
-              <div className="bg-white">
-                <div
-                  id="imagePreview"
-                  style={{
-                    margin: "auto",
-                    maxWidth: "22rem",
-                    height: "13.4rem",
-                  }}
-                >
-                  <figure className="figure">
-                    <img src={blogPreviewImage} alt="preview author" />
-                  </figure>
-                </div>
-                <div>
-                  <label
-                    className="btn btn-success btn-block mb-0"
-                    style={{ textTransform: "capitalize" }}
-                    htmlFor="avatar"
-                  >
-                    Click to Upload Blog Thumbnail
-                  </label>
-                  <input
-                    type="file"
-                    style={{ display: "none" }}
-                    name="avatar"
-                    id="avatar"
-                    onChange={imageUpload}
-                    disabled={blogUpdating}
-                  ></input>
+      ) : (
+        <>
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-12">
+                <label htmlFor="blogTitle">
+                  <strong>Tags</strong>
+                </label>
+                <div className="form-control">
+                  {formType === "update" && (
+                    <BlogUpdateTags
+                      setTagsResponse={setTagsResponse}
+                      tags={tags?.data}
+                    />
+                  )}
+                  {formType === "store" && (
+                    <BlogCreateTags setTagsResponse={setTagsResponse} />
+                  )}
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-sm-12 col-md-6">
-            <div className="form-group">
-              <label htmlFor="blogShortDescription">
-                <strong>Short Description</strong>{" "}
-                <sup className="text-danger">*</sup>{" "}
-              </label>
-              <textarea
-                className="form-control"
-                id="blogShortDescription"
-                rows="10"
-                type="text"
-                name="blogShortDescription"
-                value={blogShortDescription}
-                placeholder="Enter Blog Short Description ..."
-                onChange={(e) => setShortDescription(e.target.value)}
-              ></textarea>
+            <div className="row">
+              <div className="col-12">
+                <div className="form-group">
+                  <label htmlFor="blogTitle">
+                    <strong>Title</strong> <sup className="text-danger">*</sup>{" "}
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="blogTitle"
+                    name="title"
+                    value={title}
+                    placeholder="Enter a Title ..."
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="form-group">
-              <label htmlFor="blogLongDescription">
-                <strong>Long Description</strong>{" "}
-                <sup className="text-danger">*</sup>{" "}
-              </label>
-              <Editor
-                id="blogLongDescription"
-                editorState={longDescriptionEditorState}
-                toolbarClassName="toolbarClassName"
-                wrapperClassName="wrapperClassName"
-                editorClassName={`${styles.longDescription} form-control`}
-                onEditorStateChange={(newState) => {
-                  setLongDescriptionEditorState(newState);
-                  setLongDescription(
-                    draftToHtml(convertToRaw(newState.getCurrentContent()))
-                  );
-                }}
-              ></Editor>
+            <div className="row">
+              <div className="col-sm-12 col-md-6">
+                <div className="form-group">
+                  <div className="bg-white">
+                    <div
+                      id="imagePreview"
+                      style={{
+                        margin: "auto",
+                        maxWidth: "22rem",
+                        height: "13.4rem",
+                      }}
+                    >
+                      <figure className="figure">
+                        <img src={blogPreviewImage} alt="preview author" />
+                      </figure>
+                    </div>
+                    <div>
+                      <label
+                        className="btn btn-success btn-block mb-0"
+                        style={{ textTransform: "capitalize" }}
+                        htmlFor="avatar"
+                      >
+                        Click to Upload Blog Thumbnail
+                      </label>
+                      <input
+                        type="file"
+                        style={{ display: "none" }}
+                        name="avatar"
+                        id="avatar"
+                        onChange={imageUpload}
+                        disabled={blogUpdating}
+                      ></input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-12 col-md-6">
+                <div className="form-group">
+                  <label htmlFor="blogShortDescription">
+                    <strong>Short Description</strong>{" "}
+                    <sup className="text-danger">*</sup>{" "}
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="blogShortDescription"
+                    rows="10"
+                    type="text"
+                    name="blogShortDescription"
+                    value={blogShortDescription}
+                    placeholder="Enter Blog Short Description ..."
+                    onChange={(e) => setShortDescription(e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        {formType === "update" && (
-          <div className="form-group">
-            <button
-              type="submit"
-              className="btn btn-success"
-              disabled={blogUpdating}
-            >
-              Update Blog
-            </button>
-          </div>
-        )}
-        {formType === "store" && (
-          <div className="form-group">
-            <button
-              type="submit"
-              className="btn btn-success"
-              disabled={blogStoring}
-            >
-              Create New Blog
-            </button>
-          </div>
-        )}
-      </form>
+            <div className="row">
+              <div className="col-12">
+                <div className="form-group">
+                  <label htmlFor="blogLongDescription">
+                    <strong>Long Description</strong>{" "}
+                    <sup className="text-danger">*</sup>{" "}
+                  </label>
+                  <Editor
+                    id="blogLongDescription"
+                    editorState={longDescriptionEditorState}
+                    toolbarClassName="toolbarClassName"
+                    wrapperClassName="wrapperClassName"
+                    editorClassName={`${styles.longDescription} form-control`}
+                    onEditorStateChange={(newState) => {
+                      setLongDescriptionEditorState(newState);
+                      setLongDescription(
+                        draftToHtml(convertToRaw(newState.getCurrentContent()))
+                      );
+                    }}
+                  ></Editor>
+                </div>
+              </div>
+            </div>
+            {formType === "update" && (
+              <div className="form-group">
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  disabled={blogUpdating}
+                >
+                  Update Blog
+                </button>
+              </div>
+            )}
+            {formType === "store" && (
+              <div className="form-group">
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  disabled={blogStoring}
+                >
+                  Create New Blog
+                </button>
+              </div>
+            )}
+          </form>
+        </>
+      )}
     </>
   );
 }

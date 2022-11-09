@@ -1,4 +1,5 @@
 import React from "react";
+import Stars from "../../utils/Stars";
 
 export default function Client({ client }) {
   const { client_rating, client_name, client_review, client_image } =
@@ -10,7 +11,6 @@ export default function Client({ client }) {
       : imageURL.split("/")[0] === "uploads"
       ? process.env.REACT_APP_API_URL + imageURL
       : imageURL;
-  const rating = Math.ceil(client_rating);
   return (
     <div className="member_feedback p_30 color_secondery">
       <div className="client_img">
@@ -18,21 +18,7 @@ export default function Client({ client }) {
       </div>
       <div className="star d-inline-block mt_30 color_default">
         <ul>
-          {[...Array(5)].map((elementInArray, index) => {
-            if (rating > index) {
-              return (
-                <li key={index}>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                </li>
-              );
-            } else {
-              return (
-                <li key={index}>
-                  <i className="fa fa-star-o" aria-hidden="true"></i>
-                </li>
-              );
-            }
-          })}
+          <Stars rating={client_rating} />
         </ul>
       </div>
       <h5 className="color_primary mb_15">{client_name}</h5>

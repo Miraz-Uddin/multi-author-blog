@@ -45,7 +45,7 @@ const blogAPI = apiSlice.injectEndpoints({
     }),
     getBLogsByAuthor: builder.query({
       query: (userId) =>
-        `/blogs?[fields][0]=title&[fields][1]=short_description&[fields][2]=publishedAt&populate[image][fields][0]=url&populate[author][fields][0]=username&populate[comments]=*&populate[tags][fields][0]=title&filters[author][id][$eq]=${userId}`,
+        `/blogs?populate[image][fields][0]=url&populate[author][fields][0]=username&populate[comments]=*&populate[tags][fields][0]=title&filters[author][id][$eq]=${userId}`,
       providesTags: [
         "StoreComment",
         "UpdateComment",

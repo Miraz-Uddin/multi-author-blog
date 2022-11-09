@@ -4,8 +4,8 @@ import styles from "./profileCustom.module.css";
 export default function ProfileInfo({ label, value }) {
   return (
     <div className="mb-2">
-      <label className={`${styles.label}`}>{label}:</label>
-      <input className={`${styles.input}`} disabled defaultValue={value} />
+      <label className={`${styles.label} `}>{label}:</label>
+      <input className={`${styles.input} `} disabled defaultValue={value} />
     </div>
   );
 }

@@ -316,7 +316,12 @@ export default function ProfileForm({ profileId, profile, formType }) {
                 <figure className="figure">
                   <img
                     src={authorImage}
-                    className="figure-img img-fluid rounded"
+                    style={{
+                      width: "auto",
+                      height: "14.3rem",
+                      display: "block",
+                      margin: "auto",
+                    }}
                     alt="preview author"
                   />
                 </figure>

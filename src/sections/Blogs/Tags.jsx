@@ -28,10 +28,8 @@ export default function Tags({ tagsClicked, selectedTag }) {
       <h3 className="widget_title mb_30 text-capitalize d-flex justify-content-between">
         <span>Tags</span>
         <button
-          className={`badge text-danger font-regular ${
-            selectedTag ? "" : "d-none"
-          }`}
-          style={{ background: "none", border: "none" }}
+          className={`badge font-regular ${selectedTag ? "" : "d-none"}`}
+          style={{ color: "#ffb32f", background: "none", border: "none" }}
           type="button"
           onClick={() => tagsClicked(null)}
         >

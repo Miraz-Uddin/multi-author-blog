@@ -35,8 +35,7 @@ export default function TagIndex() {
       .slice()
       .sort((a, b) => {
         return (
-          new Date(b.attributes.publishedAt) -
-          new Date(a.attributes.publishedAt)
+          new Date(b.attributes.updatedAt) - new Date(a.attributes.updatedAt)
         );
       })
       .map((tag, i) => {

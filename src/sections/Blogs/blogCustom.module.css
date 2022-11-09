@@ -14,7 +14,7 @@
 }
 
 .monthYearSelected a {
-    color: #ffb32f;
+    color: #ffb32f !important;
 }
 
 .tags:hover {

@@ -33,8 +33,7 @@ export default function BlogIndex() {
       .slice()
       .sort((a, b) => {
         return (
-          new Date(b.attributes.publishedAt) -
-          new Date(a.attributes.publishedAt)
+          new Date(b.attributes.updatedAt) - new Date(a.attributes.updatedAt)
         );
       })
       .map((blog, i) => {
@@ -54,7 +53,6 @@ export default function BlogIndex() {
                 <Link
                   to={`/blogs/${blog?.id}`}
                   className={`${styles.blogTitle}`}
-                  style={{ textDecoration: "none", color: "#2c2c2c" }}
                 >
                   {title}
                 </Link>

@@ -11,6 +11,10 @@ export default function ProfileIndex({ profile, profileId }) {
       user,
       avatar,
       address,
+      fullname,
+      whatsapp,
+      phone,
+      bloodgroup,
       facebook,
       instagram,
       twitter,
@@ -30,10 +34,6 @@ export default function ProfileIndex({ profile, profileId }) {
         <div className="col-sm-12 col-md-12 col-lg-7">
           <div className="card">
             <div className="card-body">
-              <ProfileInfo
-                label="Email"
-                value={user?.data?.attributes?.email}
-              />
               <ProfileInfo
                 label="Birthday"
                 value={moment(dateofbirth).format("Do MMMM,  YYYY")}
@@ -63,7 +63,33 @@ export default function ProfileIndex({ profile, profileId }) {
         </div>
         <div className="col-sm-12 col-md-12 col-lg-5">
           <div className="card">
-            <img className="card-img-top" src={authorImage} alt="Cardcap" />
+            <img
+              style={{
+                width: "auto",
+                height: "auto",
+                maxHeight: "14.3rem",
+                display: "block",
+                margin: "auto",
+                maxWidth: "15rem",
+              }}
+              src={authorImage}
+              alt="Cardcap"
+            />
+            <div
+              className="card-body"
+              style={{
+                minHeight: "23rem",
+              }}
+            >
+              <ProfileInfo label="Name" value={fullname ?? "N/A"} />
+              <ProfileInfo
+                label="Email"
+                value={user?.data?.attributes?.email}
+              />
+              <ProfileInfo label="Whatsapp" value={whatsapp ?? "N/A"} />
+              <ProfileInfo label="Contact" value={phone ?? "N/A"} />
+              <ProfileInfo label="BloodGroup" value={bloodgroup ?? "N/A"} />
+            </div>
           </div>
         </div>
       </div>

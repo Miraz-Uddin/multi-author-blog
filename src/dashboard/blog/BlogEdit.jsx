@@ -54,15 +54,12 @@ export default function BlogEdit() {
         previousPageName="Dashboard"
         currentPageName="Blog Edit"
       />
-      <section className="py_80 bg_secondery full_row">
+      <section className="py_20 bg_secondery full_row">
         <div className="container">
           <div className="my_skill" id="authentication">
             <div className="row">
               <div className="col-12">
                 <div className="replay mt_60 wow animated slideInUp">
-                  <h4 className="text-uppercase text-center color_primary mb_30">
-                    Edit Blog
-                  </h4>
                   {content}
                 </div>
               </div>

@@ -108,6 +108,6 @@ export default function SingleBlogDetails({ blog }) {
       </>
     );
   } else {
-    return <span>Error While Fetching Blog Info</span>;
+    return <span>Blog Information Loading ...</span>;
   }
 }

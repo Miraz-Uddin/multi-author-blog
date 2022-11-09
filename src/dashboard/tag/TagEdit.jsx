@@ -1,6 +1,5 @@
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useUpdateTagMutation } from "../../features/tag/tagAPI";
 import styles from "./tagCustom.module.css";
 
@@ -63,14 +62,17 @@ export default function TagEdit({ tag, tagEditable, setTagEditable }) {
   return (
     <>
       {(tagEditable === null || tagEditable !== tag?.id) && (
-        <span>
-          <Link
+        <span
+          className={`${styles.tagTitle}`}
+          style={{ textDecoration: "none", color: "#2c2c2c" }}
+        >
+          {/* <Link
             to={`/tags/${tag?.id}`}
-            className={`${styles.tagTitle}`}
-            style={{ textDecoration: "none", color: "#2c2c2c" }}
+            
           >
-            {tag?.attributes?.title}
-          </Link>
+            
+          </Link> */}
+          {tag?.attributes?.title}
         </span>
       )}
       {tagEditable !== null && tagEditable === tag?.id && (

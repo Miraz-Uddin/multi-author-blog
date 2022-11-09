@@ -22,10 +22,8 @@ export default function Archives({ monthYearClicked, selectedMonthYear }) {
       <h3 className="widget_title mb_30 text-capitalize d-flex justify-content-between">
         <span>Archives</span>
         <button
-          className={`badge text-danger font-regular ${
-            selectedMonthYear ? "" : "d-none"
-          }`}
-          style={{ background: "none", border: "none" }}
+          className={`badge font-regular ${selectedMonthYear ? "" : "d-none"}`}
+          style={{ color: "#ffb32f", background: "none", border: "none" }}
           type="button"
           onClick={() => monthYearClicked(null)}
         >

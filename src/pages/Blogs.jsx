@@ -34,7 +34,14 @@ const Blogs = () => {
   // get current Items
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = blogs?.data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = blogs?.data
+    .slice()
+    .sort((a, b) => {
+      return (
+        new Date(b.attributes.publishedAt) - new Date(a.attributes.publishedAt)
+      );
+    })
+    .slice(indexOfFirstItem, indexOfLastItem);
   // Change Page
   const handlePageNumber = (currentPageNumber) =>
     setCurrentPage(currentPageNumber);
@@ -52,7 +59,7 @@ const Blogs = () => {
           to={`/blogs/${blog.id}`}
           key={blog.id}
           className="blog_item mb_30"
-          style={{ textDecoration: "none", color: "#2c2c2c" }}
+          style={{ textDecoration: "none", color: "#2c2c2c", width: "100%" }}
         >
           <BlogItem info={blog.attributes} />
         </Link>

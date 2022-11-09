@@ -59,15 +59,12 @@ export default function ProfileEdit() {
         previousPageName="Dashboard"
         currentPageName="Profile Edit"
       />
-      <section className="py_80 bg_secondery full_row">
+      <section className="p_20 bg_secondery full_row">
         <div className="container">
           <div className="my_skill" id="authentication">
             <div className="row">
               <div className="col-12">
                 <div className="replay mt_60 wow animated slideInUp">
-                  <h4 className="text-uppercase text-center color_primary mb_30">
-                    Edit Profile
-                  </h4>
                   {content}
                 </div>
               </div>
