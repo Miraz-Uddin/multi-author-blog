@@ -5,6 +5,7 @@ import {
   useGetTagsQuery,
 } from "../../features/tag/tagAPI";
 import useOutsideAlerter from "../../hooks/useOutsideAlerter";
+import Dashboard from "../../pages/Dashboard";
 import styles from "./tagCustom.module.css";
 import TagEdit from "./TagEdit";
 
@@ -84,5 +85,9 @@ export default function TagIndex() {
       </div>
     );
   }
-  return <>{content}</>;
+  return (
+    <>
+      <Dashboard content={content} activeBtn={"tags"} />
+    </>
+  );
 }

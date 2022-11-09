@@ -66,12 +66,6 @@ export default function TagEdit({ tag, tagEditable, setTagEditable }) {
           className={`${styles.tagTitle}`}
           style={{ textDecoration: "none", color: "#2c2c2c" }}
         >
-          {/* <Link
-            to={`/tags/${tag?.id}`}
-            
-          >
-            
-          </Link> */}
           {tag?.attributes?.title}
         </span>
       )}

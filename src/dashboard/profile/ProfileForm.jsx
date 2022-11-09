@@ -47,7 +47,7 @@ export default function ProfileForm({ profileId, profile, formType }) {
     }
     if (updatedProfileData) {
       enqueueSnackbar("Profile Updated", { variant: "success" });
-      navigate("/dashboard");
+      navigate("/dashboard/profile");
     }
   }, [updatedProfileData, profileUpdateError, navigate, enqueueSnackbar]);
 
@@ -104,27 +104,16 @@ export default function ProfileForm({ profileId, profile, formType }) {
           twitter: profileTwitter,
           user: user?.data?.id,
         };
-        if (profileAvatar?.data === null) {
-          // Image doesnot exist at all and not updated too
+        if (profileAvatar?.data === null || profileAvatar?.data?.id) {
+          // Image doesnot exist at all or existed before but not updated
           updateProfile({
             id: profileId,
             data: {
               data: othersInfo,
             },
           });
-        } else if (profileAvatar?.data?.id) {
-          // if not updated image, but image existed before
-          updateProfile({
-            id: profileId,
-            data: {
-              data: {
-                ...othersInfo,
-                avatar: profileAvatar,
-              },
-            },
-          });
         } else {
-          // if updated image, and (image existed before or doesnot exist at all)
+          // Image existed before and updated too
           updateProfile({
             id: profileId,
             data: getSerializeData(

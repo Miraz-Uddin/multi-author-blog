@@ -6,6 +6,7 @@ import {
   useDeleteCommentMutation,
   useGetCommentsByAuthorQuery,
 } from "../../features/comment/commentAPI";
+import Dashboard from "../../pages/Dashboard";
 import styles from "./commentCustom.module.css";
 
 export default function CommentIndex() {
@@ -91,5 +92,9 @@ export default function CommentIndex() {
       </div>
     );
   }
-  return <>{content}</>;
+  return (
+    <>
+      <Dashboard content={content} activeBtn={"comments"} />
+    </>
+  );
 }

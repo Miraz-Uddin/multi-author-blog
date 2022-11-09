@@ -53,7 +53,7 @@ export default function CommentForm({ commentId, comment, formType }) {
     }
     if (updatedCommentData) {
       enqueueSnackbar("Comment Updated", { variant: "success" });
-      navigate("/dashboard");
+      navigate("/dashboard/comments");
     }
   }, [updatedCommentData, commentUpdateError, navigate, enqueueSnackbar]);
 

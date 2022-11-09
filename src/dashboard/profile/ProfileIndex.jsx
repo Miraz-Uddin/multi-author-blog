@@ -1,12 +1,23 @@
 import moment from "moment/moment";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import PreLoader from "../../components/ui/PreLoader";
+import { useGetProfileQuery } from "../../features/profile/profileAPI";
+import Dashboard from "../../pages/Dashboard";
 import styles from "./profileCustom.module.css";
 import ProfileInfo from "./ProfileInfo";
 
 export default function ProfileIndex({ profile, profileId }) {
-  if (profile) {
+  const { user } = useSelector((state) => state.auth) || {};
+  const { data, isLoading, isError } = useGetProfileQuery(user?.id);
+  let content;
+  if (isLoading) content = "Profile Information Loading ...";
+  if (!isLoading && isError) content = "Error while Fetching Profile Info";
+  if (!isLoading && !isError && data?.data?.length === 0)
+    content = "Profile Information is Missing";
+  if (!isLoading && !isError && data?.data?.length > 0) {
+    const profileId = data?.data?.[0]?.id;
+    const profile = data?.data?.[0]?.attributes;
     const {
       user,
       avatar,
@@ -29,7 +40,7 @@ export default function ProfileIndex({ profile, profileId }) {
         : imageURL.split("/")[0] === "uploads"
         ? process.env.REACT_APP_API_URL + imageURL
         : imageURL;
-    return (
+    content = (
       <div className="row">
         <div className="col-sm-12 col-md-12 col-lg-7">
           <div className="card">
@@ -94,7 +105,10 @@ export default function ProfileIndex({ profile, profileId }) {
         </div>
       </div>
     );
-  } else {
-    return <PreLoader />;
   }
+  return (
+    <>
+      <Dashboard content={content} activeBtn={"profile"} />
+    </>
+  );
 }

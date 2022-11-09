@@ -6,6 +6,7 @@ import {
   useDeleteBlogMutation,
   useGetBLogsByAuthorQuery,
 } from "../../features/blog/blogAPI";
+import Dashboard from "../../pages/Dashboard";
 import styles from "./blogCustom.module.css";
 
 export default function BlogIndex() {
@@ -101,5 +102,9 @@ export default function BlogIndex() {
       </div>
     );
   }
-  return <>{content}</>;
+  return (
+    <>
+      <Dashboard content={content} activeBtn={"blogs"} />
+    </>
+  );
 }

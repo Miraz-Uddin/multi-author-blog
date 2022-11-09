@@ -11,24 +11,26 @@ export default function BlogCreate() {
   }, []);
   return (
     <>
-      <Breadcrumbs
-        previousUrl="/dashboard"
-        previousPageName="Dashboard"
-        currentPageName="Blog Create"
-      />
-      <section className="py_20 bg_secondery full_row">
-        <div className="container">
-          <div className="my_skill" id="authentication">
-            <div className="row">
-              <div className="col-12">
-                <div className="replay mt_60 wow animated slideInUp">
-                  {content}
+      <>
+        <Breadcrumbs
+          previousUrl="/dashboard"
+          previousPageName="Dashboard"
+          currentPageName="Blog Create"
+        />
+        <section className="py_20 bg_secondery full_row">
+          <div className="container">
+            <div className="my_skill" id="authentication">
+              <div className="row">
+                <div className="col-12">
+                  <div className="replay mt_60 wow animated slideInUp">
+                    {content}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </>
     </>
   );
 }

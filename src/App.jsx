@@ -13,14 +13,17 @@ import PublicRoute from "./components/PublicRoute";
 import { animateScroll as scroll } from "react-scroll";
 import BlogCreate from "./dashboard/blog/BlogCreate";
 import BlogEdit from "./dashboard/blog/BlogEdit";
+import BlogIndex from "./dashboard/blog/BlogIndex";
 import CommentEdit from "./dashboard/comment/CommentEdit";
+import CommentIndex from "./dashboard/comment/CommentIndex";
 import ProfileEdit from "./dashboard/profile/ProfileEdit";
+import ProfileIndex from "./dashboard/profile/ProfileIndex";
 import TagCreate from "./dashboard/tag/TagCreate";
+import TagIndex from "./dashboard/tag/TagIndex";
 import { useGetHeaderInfoQuery } from "./features/head/headAPI";
 import useAuthCheck from "./hooks/useAuthCheck";
 import Blogs from "./pages/Blogs";
 import Construction from "./pages/Construction";
-import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -102,54 +105,96 @@ function App() {
                   </PublicRoute>
                 }
               />
-              <Route
-                path="/dashboard"
-                element={
-                  <PrivateRoute>
-                    <Dashboard />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/dashboard/blogs/:blogId/edit"
-                element={
-                  <PrivateRoute>
-                    <BlogEdit />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/dashboard/blogs/create"
-                element={
-                  <PrivateRoute>
-                    <BlogCreate />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/dashboard/tags/create"
-                element={
-                  <PrivateRoute>
-                    <TagCreate />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/dashboard/comments/:commentId/edit"
-                element={
-                  <PrivateRoute>
-                    <CommentEdit />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/dashboard/profile/:profileId/edit"
-                element={
-                  <PrivateRoute>
-                    <ProfileEdit />
-                  </PrivateRoute>
-                }
-              />
+              <Route path="dashboard">
+                <Route
+                  index
+                  element={
+                    <PrivateRoute>
+                      <ProfileIndex />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="blogs">
+                  <Route
+                    index
+                    element={
+                      <PrivateRoute>
+                        <BlogIndex />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="create"
+                    element={
+                      <PrivateRoute>
+                        <BlogCreate />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path=":blogId/edit"
+                    element={
+                      <PrivateRoute>
+                        <BlogEdit />
+                      </PrivateRoute>
+                    }
+                  />
+                </Route>
+                <Route path="tags">
+                  <Route
+                    index
+                    element={
+                      <PrivateRoute>
+                        <TagIndex />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="create"
+                    element={
+                      <PrivateRoute>
+                        <TagCreate />
+                      </PrivateRoute>
+                    }
+                  />
+                </Route>
+                <Route path="comments">
+                  <Route
+                    index
+                    element={
+                      <PrivateRoute>
+                        <CommentIndex />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path=":commentId/edit"
+                    element={
+                      <PrivateRoute>
+                        <CommentEdit />
+                      </PrivateRoute>
+                    }
+                  />
+                </Route>
+                <Route path="profile">
+                  <Route
+                    index
+                    element={
+                      <PrivateRoute>
+                        <ProfileIndex />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path=":profileId/edit"
+                    element={
+                      <PrivateRoute>
+                        <ProfileEdit />
+                      </PrivateRoute>
+                    }
+                  />
+                </Route>
+              </Route>
               <Route
                 path="/register"
                 element={
@@ -158,8 +203,6 @@ function App() {
                   </PublicRoute>
                 }
               />
-              <Route path="/books" element={<Navigate to="/coming-soon" />} />
-              <Route path="/courses" element={<Navigate to="/coming-soon" />} />
               <Route path="*" element={<Navigate to="/not-found" />} />
             </Routes>
             <Copyright />

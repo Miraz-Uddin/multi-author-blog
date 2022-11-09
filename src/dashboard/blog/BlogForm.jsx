@@ -151,20 +151,19 @@ export default function BlogForm({ author, blog, formType, blogId }) {
   useEffect(() => {
     if (blogStoreError) {
       const errorMessage = blogStoreError?.data?.error?.message;
-      console.log(errorMessage);
-      enqueueSnackbar("New Blog Can not be Created", { variant: "error" });
+      enqueueSnackbar(errorMessage, { variant: "error" });
     }
     if (blogUpdateError) {
       const errorMessage = blogUpdateError?.data?.error?.message;
-      console.log(errorMessage);
-      enqueueSnackbar("Blog Can not be Updated", { variant: "error" });
+      enqueueSnackbar(errorMessage, { variant: "error" });
     }
     if (blogStoredData) {
       enqueueSnackbar("Blog Created Successfully", { variant: "success" });
-      navigate("/dashboard");
+      navigate("/dashboard/blogs");
     }
     if (blogUpdatedData) {
       enqueueSnackbar("Blog Updated Successfully", { variant: "success" });
+      navigate("/dashboard/blogs");
     }
   }, [
     blogStoredData,
@@ -276,17 +275,17 @@ export default function BlogForm({ author, blog, formType, blogId }) {
               </div>
               <div className="col-sm-12 col-md-6">
                 <div className="form-group">
-                  <label htmlFor="blogShortDescription">
+                  <label htmlFor="shortDescription">
                     <strong>Short Description</strong>{" "}
                     <sup className="text-danger">*</sup>{" "}
                   </label>
                   <textarea
                     className="form-control"
-                    id="blogShortDescription"
+                    id="shortDescription"
                     rows="10"
                     type="text"
-                    name="blogShortDescription"
-                    value={blogShortDescription}
+                    name="shortDescription"
+                    value={shortDescription}
                     placeholder="Enter Blog Short Description ..."
                     onChange={(e) => setShortDescription(e.target.value)}
                   ></textarea>
