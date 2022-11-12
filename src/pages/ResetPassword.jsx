@@ -1,69 +1,60 @@
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import illustrtaionImage from "../assets/media/img/authentication/Illustration.png";
 import Breadcrumbs from "../components/ui/Breadcrumbs";
+import { useResetPasswordMutation } from "../features/auth/authApi";
 
 export default function ResetPassword() {
   const { enqueueSnackbar } = useSnackbar();
-  //   const [register, { data, isLoading, error: responseError }] =
-  //     useRegisterMutation();
+  const [resetPassword, { data, isLoading, error: responseError }] =
+    useResetPasswordMutation();
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [agreed, setAgreed] = useState(false);
-
+  const [params] = useSearchParams();
+  const resetCode = params.get("code");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (confirmPassword !== password) {
+    if (password === "" || confirmPassword === "") {
+      enqueueSnackbar("Please Fillup All Field", {
+        variant: "info",
+      });
+    } else if (confirmPassword !== password) {
       enqueueSnackbar("Passwords do not match", {
-        variant: "error",
+        variant: "warning",
+      });
+    } else if (password.trim().length < 6) {
+      enqueueSnackbar("Password must be atleast 6 Characters", {
+        variant: "warning",
       });
     } else {
-      console.log("password update");
+      resetPassword({
+        code: resetCode,
+        password,
+        passwordConfirmation: confirmPassword,
+      });
     }
   };
 
-  //   useEffect(() => {
-  //     if (responseError?.data) {
-  //       const errorMessage = responseError?.data?.error?.message;
-  //       enqueueSnackbar(
-  //         errorMessage === "3 errors occurred"
-  //           ? "Fill up Full Form to Register"
-  //           : errorMessage,
-  //         {
-  //           variant: "error",
-  //         }
-  //       );
-  //     }
-  //     if (data?.jwt && data?.user) {
-  //       navigate("/");
-  //       enqueueSnackbar("User Registration Succeeded", {
-  //         variant: "success",
-  //       });
-  //     }
-  //   }, [data, responseError, navigate, enqueueSnackbar]);
+  useEffect(() => {
+    if (responseError?.data) {
+      const errorMessage = responseError?.data?.error?.message;
+      enqueueSnackbar(errorMessage, {
+        variant: "error",
+      });
+    }
+    if (data) {
+      navigate("/login");
+      enqueueSnackbar("Your user's password has been reset.", {
+        variant: "success",
+      });
+    }
+  }, [data, responseError, navigate, enqueueSnackbar]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     setError("");
-  //     if (isValidEmail(email.trim())) {
-  //       setEmail(email.trim());
-  //       forgotPassword({
-  //         email: email.trim(),
-  //       });
-  //     } else {
-  //       enqueueSnackbar("Please Give a Valid Email", { variant: "error" });
-  //     }
-  //   };
 
   return (
     <>
@@ -113,7 +104,7 @@ export default function ResetPassword() {
                     <button
                       type="submit"
                       className="auth-btn"
-                      //   disabled={isLoading}
+                      disabled={isLoading}
                     >
                       Update Password
                     </button>
