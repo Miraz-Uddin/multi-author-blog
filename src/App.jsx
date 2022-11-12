@@ -24,10 +24,12 @@ import { useGetHeaderInfoQuery } from "./features/head/headAPI";
 import useAuthCheck from "./hooks/useAuthCheck";
 import Blogs from "./pages/Blogs";
 import Construction from "./pages/Construction";
+import ForgotPassword from "./pages/ForgotPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
+import ResetPassword from "./pages/ResetPassword";
 import SingleBlog from "./pages/SingleBlog";
 import Copyright from "./sections/Copyright";
 import MainNavigation from "./sections/MainNavigation/MainNavigation";
@@ -200,6 +202,22 @@ function App() {
                 element={
                   <PublicRoute>
                     <Register />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/forgot-password"
+                element={
+                  <PublicRoute>
+                    <ForgotPassword />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/reset-password"
+                element={
+                  <PublicRoute>
+                    <ResetPassword />
                   </PublicRoute>
                 }
               />

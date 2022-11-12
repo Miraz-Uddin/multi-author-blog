@@ -72,8 +72,8 @@ export default function Login() {
                   >
                     <div className="text">
                       <p className="title">log in</p>
-                      <p>
-                        Not registerd?{" "}
+                      {/* <p>
+                        Not registered?{" "}
                         <Link
                           to="/register"
                           state={{ from: location?.state?.from }}
@@ -81,7 +81,7 @@ export default function Login() {
                         >
                           create a new account
                         </Link>
-                      </p>
+                      </p> */}
                     </div>
                     {error !== "" && (
                       <p className="orange pb-2">
@@ -98,7 +98,7 @@ export default function Login() {
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
-                    <div className="form-group">
+                    <div>
                       <input
                         type="password"
                         className="form-control"
@@ -117,6 +117,31 @@ export default function Login() {
                     {/* <button type="submit" className="auth-btn">
                           Log in
                         </button> */}
+                    <div className="text p-0 ">
+                      <p className="d-block float-left pb-3">
+                        Not registered?{" "}
+                        <Link
+                          to="/register"
+                          state={{ from: location?.state?.from }}
+                          className="blue"
+                        >
+                          Sign Up
+                        </Link>
+                      </p>
+                      <p className="d-block float-right pb-3">
+                        <Link
+                          to="/forgot-password"
+                          state={{ from: location?.state?.from }}
+                          style={{
+                            textDecoration: "none",
+                            color: "rgb(211 134 0)",
+                          }}
+                        >
+                          Forgot Password ?
+                        </Link>
+                      </p>
+                    </div>
+
                     <button
                       type="submit"
                       className="auth-btn"
