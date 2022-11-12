@@ -16,6 +16,7 @@ import BlogEdit from "./dashboard/blog/BlogEdit";
 import BlogIndex from "./dashboard/blog/BlogIndex";
 import CommentEdit from "./dashboard/comment/CommentEdit";
 import CommentIndex from "./dashboard/comment/CommentIndex";
+import ChangePassword from "./dashboard/password/ChangePassword";
 import ProfileEdit from "./dashboard/profile/ProfileEdit";
 import ProfileIndex from "./dashboard/profile/ProfileIndex";
 import TagCreate from "./dashboard/tag/TagCreate";
@@ -192,6 +193,16 @@ function App() {
                     element={
                       <PrivateRoute>
                         <ProfileEdit />
+                      </PrivateRoute>
+                    }
+                  />
+                </Route>
+                <Route path="change-password">
+                  <Route
+                    index
+                    element={
+                      <PrivateRoute>
+                        <ChangePassword />
                       </PrivateRoute>
                     }
                   />

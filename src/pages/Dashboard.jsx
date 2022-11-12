@@ -30,6 +30,10 @@ export default function Dashboard({ content, activeBtn }) {
     () => navigate("/dashboard/profile", { replace: true }),
     [navigate]
   );
+  const displayChangePassword = useCallback(
+    () => navigate("/dashboard/change-password", { replace: true }),
+    [navigate]
+  );
 
   return (
     <>
@@ -109,6 +113,16 @@ export default function Dashboard({ content, activeBtn }) {
                     >
                       <span className="d-flex justify-content-between">
                         <span>profile</span>
+                      </span>
+                    </span>
+                    <span
+                      className={`${styles.button} nav-link ${
+                        activeBtn === "changePassword" ? "active" : ""
+                      } w-75 `}
+                      onClick={displayChangePassword}
+                    >
+                      <span className="d-flex justify-content-between">
+                        <span>Change Password</span>
                       </span>
                     </span>
                     <span

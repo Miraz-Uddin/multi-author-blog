@@ -31,7 +31,11 @@ export default function ForgotPassword() {
   }, [data, responseError, enqueueSnackbar, navigate]);
 
   useEffect(() => {
+    enqueueSnackbar("Give Your Email to Reset Password", {
+      variant: "info",
+    });
     window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = (e) => {
@@ -82,7 +86,7 @@ export default function ForgotPassword() {
                         type="text"
                         className="form-control"
                         name=""
-                        placeholder="Give Email to Send Reset Link"
+                        placeholder="Give Your Email to Send Reset Link"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
