@@ -108,7 +108,11 @@ export default function ProfileIndex({ profile, profileId }) {
   }
   return (
     <>
-      <Dashboard content={content} activeBtn={"profile"} />
+      <Dashboard
+        content={content}
+        activeBtn={"profile"}
+        currentPageName={"User's Profile"}
+      />
     </>
   );
 }

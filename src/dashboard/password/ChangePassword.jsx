@@ -6,7 +6,11 @@ export default function ChangePassword() {
   const content = <Form />;
   return (
     <>
-      <Dashboard content={content} activeBtn={"changePassword"} />
+      <Dashboard
+        content={content}
+        activeBtn={"changePassword"}
+        currentPageName={"Change Password"}
+      />
     </>
   );
 }

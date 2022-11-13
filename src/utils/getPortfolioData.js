@@ -2,8 +2,8 @@ export default function getPortfolioData(data) {
   const filtersDefault = [{ label: "all", isChecked: true, title: "All" }];
   const cardsLayout = data.map((item) => {
     const id = item?.id;
-    const thumbnail = item?.attributes?.full_image?.data?.attributes?.url;
-    const fullImage = item?.attributes?.preview_image?.data?.attributes?.url;
+    const thumbnail = item?.attributes?.preview?.data?.attributes?.url;
+    const fullImage = item?.attributes?.full?.data?.attributes?.url;
     const filter = [];
     item?.attributes?.p_project_tags?.data.map((i) => {
       filter.push(i?.attributes?.title);

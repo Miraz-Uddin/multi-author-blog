@@ -94,7 +94,11 @@ export default function CommentIndex() {
   }
   return (
     <>
-      <Dashboard content={content} activeBtn={"comments"} />
+      <Dashboard
+        content={content}
+        activeBtn={"comments"}
+        currentPageName={"Comments"}
+      />
     </>
   );
 }

@@ -5,7 +5,7 @@ import Breadcrumbs from "../components/ui/Breadcrumbs";
 import { userLoggedOut } from "../features/auth/authSlice";
 import { useGetProfileQuery } from "../features/profile/profileAPI";
 import styles from "./custom.module.css";
-export default function Dashboard({ content, activeBtn }) {
+export default function Dashboard({ content, activeBtn, currentPageName }) {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth) || {};
   const { data: profile } = useGetProfileQuery(user?.id);
@@ -39,9 +39,9 @@ export default function Dashboard({ content, activeBtn }) {
     <>
       <>
         <Breadcrumbs
-          previousUrl="/"
-          previousPageName="Home"
-          currentPageName="Dashboard"
+          previousUrl="/dashboard"
+          previousPageName="Dashboard"
+          currentPageName={currentPageName}
         />
 
         <section className="py_80 bg_secondery full_row">

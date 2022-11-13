@@ -104,7 +104,11 @@ export default function BlogIndex() {
   }
   return (
     <>
-      <Dashboard content={content} activeBtn={"blogs"} />
+      <Dashboard
+        content={content}
+        activeBtn={"blogs"}
+        currentPageName={"Blogs"}
+      />
     </>
   );
 }

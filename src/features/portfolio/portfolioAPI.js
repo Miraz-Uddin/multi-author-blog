@@ -6,7 +6,7 @@ const portfolioAPI = apiSlice.injectEndpoints({
     }),
     getProjects: builder.query({
       query: () =>
-        `/p-projects?populate[preview_image][fields][0]=url&populate[full_image][fields][0]=url&populate[p_project_tags][fields][0]=title`,
+        `/p-projects?populate[preview][fields][0]=url&populate[full][fields][0]=url&populate[p_project_tags][fields][0]=title`,
     }),
   }),
 });

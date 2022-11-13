@@ -14,23 +14,22 @@ export default function TagIndex() {
   const { enqueueSnackbar } = useSnackbar();
   const { data, isLoading, isError } = useGetTagsQuery();
   const [deleteTag] = useDeleteTagMutation();
-
   const componentRef = useRef(null);
   useOutsideAlerter(componentRef, setTagEditable);
   const handleDeleteTag = (id) => {
-    enqueueSnackbar("Tag Deleted Successfully", {
-      variant: "success",
-    });
+    enqueueSnackbar("Tag Deleted Successfully", { variant: "success" });
     deleteTag(id);
   };
   const handleEditTag = (id) => {
     setTagEditable(id);
   };
+
   let content;
   if (isLoading) content = "Tags Loading ...";
   if (!isLoading && isError) content = "Error while Fetching Tags";
-  if (!isLoading && !isError && data?.data?.length === 0)
+  if (!isLoading && !isError && data?.data?.length === 0) {
     content = "No Tag is Created Yet";
+  }
   if (!isLoading && !isError && data?.data?.length > 0) {
     const tagList = data?.data
       .slice()
@@ -85,9 +84,14 @@ export default function TagIndex() {
       </div>
     );
   }
+
   return (
     <>
-      <Dashboard content={content} activeBtn={"tags"} />
+      <Dashboard
+        content={content}
+        activeBtn={"tags"}
+        currentPageName={"Tags"}
+      />
     </>
   );
 }
