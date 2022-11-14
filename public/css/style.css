@@ -1023,6 +1023,30 @@ ul#menu li a {
   min-height: 172px;
 }
 
+@media (max-width: 1399px) {
+  .service_two p {
+    min-height: 199px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .service_two p {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 991px) {
+  .service_two p {
+    min-height: 235px;
+  }
+}
+
+@media (max-width: 767px) {
+  .service_two p {
+    min-height: 150px;
+  }
+}
+
 .srv_item_number {
   position: relative;
   overflow: hidden;
@@ -2092,6 +2116,8 @@ Slider Animation
   animation-delay: -0.2s;
 }
 
+
+
 .ball-scale-multiple>div {
   border-radius: 100%;
   margin: 2px;
@@ -2100,13 +2126,30 @@ Slider Animation
   position: absolute;
   opacity: 0;
   margin: 0;
-  /* left: -70px; */
   left: -81px;
   top: -70px;
   width: 140px;
   height: 140px;
   -webkit-animation: ball-scale-multiple 3s 0s linear infinite;
   animation: ball-scale-multiple 3s 0s linear infinite;
+}
+
+@media (max-width: 1399px) {
+  .ball-scale-multiple>div {
+    left: -70px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .ball-scale-multiple>div {
+    left: -70px;
+  }
+}
+
+@media (max-width: 575px) {
+  .ball-scale-multiple>div {
+    left: -95px;
+  }
 }
 
 /*============================================================================
