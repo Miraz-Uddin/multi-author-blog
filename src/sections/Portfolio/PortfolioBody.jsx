@@ -18,7 +18,7 @@ export default function PortfolioBody({ filtersDefault, cardsLayout }) {
     );
   };
   return (
-    <div className="col-md-12 col-lg-12">
+    <div className="col-md-6 col-lg-12">
       <div className="my_portfolio">
         <SectionFilter onFilter={onFilter} filters={filters} />
         <SectionItems filters={filters} cardsLayout={cardsLayout} />
